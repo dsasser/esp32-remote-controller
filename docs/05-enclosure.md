@@ -149,3 +149,29 @@ Double-sided foam tape to the enclosure floor or a small 3D-printed bracket clip
 - Keep 12V output wires (relay NO to binding posts) as short and direct as possible
 - Twist the 12V power pair (BAT+ and BAT− from LiFePO4) loosely to reduce EMI
 - Leave enough slack on panel-mounted component wires to allow the end panels to swing open ~45° for servicing
+
+---
+
+## 3D-Printed Parts
+
+### Hole Tolerances
+
+These radii are tuned for black PETG on a 0.4mm nozzle. Adjust ±0.1mm if your printer runs large or small.
+
+| Feature | Nominal | Print radius | Print diameter |
+|---------|---------|-------------|----------------|
+| M3 mounting hole | M3 | r = 1.6mm | ∅3.2mm |
+| Button hole | ∅8mm | r = 4.2mm | ∅8.4mm |
+| LED hole | ∅5mm | r = 2.6mm | ∅5.2mm |
+| Barrel jack hole | ∅12mm | r = 6.2mm | ∅12.4mm |
+
+For rectangular cutouts (rocker switch, USB-C), add **+0.2mm clearance on all sides** relative to the connector's body dimension.
+
+### Print Settings
+
+| Setting | Value |
+|---------|-------|
+| Material | Black PETG |
+| Layer height | 0.15mm |
+| Infill | 40% |
+| Orientation | Top face down (improves surface quality on the visible face) |
