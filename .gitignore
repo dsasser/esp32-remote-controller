@@ -1,0 +1,29 @@
+# Arduino build artifacts
+build/
+*.elf
+*.bin
+*.map
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+
+# KiCad (if PCB files added later)
+*.bak
+*-backups/
+fp-info-cache
+
+# Temporary files
+*.tmp
+*.swp
+*~
