@@ -2,176 +2,77 @@
 
 ## Hammond 1455N1601BK
 
-**External dimensions:** 160mm L × 103mm W × 53mm H
+**External:** 160mm L x 103mm W x 53mm H
 **Internal usable depth:** ~45mm
-**Material:** Extruded aluminum, black anodized
-**IP rating:** IP54 (dust and splash resistant)
-**End panels:** Removable aluminum, 103mm × 53mm each
+**Material:** Extruded aluminum, black anodized, IP54
+**End panels:** Removable aluminum, 103 x 53mm each
 
-The end panels come off completely by removing four small Phillips screws. Do all drilling on the bench before installing any internal components.
-
-DXF files for both panels are in `/hardware/` and ready to submit to Front Panel Express or any laser/CNC service.
+Front and rear panels were custom-cut by **SendCutSend** from the DXF files in `/hardware`. Both panels are confirmed compatible with the 2S single-battery design.
 
 ---
 
-## Front Panel Layout
+## Panel Compatibility (2S design)
 
-The front panel faces the operator and carries all output connections.
+When the design consolidated to a single 2S battery with barrel-jack charging, the existing panels were re-checked against the new layout. Conclusion: **both panels are usable as-is.**
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                                                        ● STATUS │
-│                                                                  │
-│    CH1          CH2          CH3          CH4                   │
-│  ●(+) ●(-)   ●(+) ●(-)   ●(+) ●(-)   ●(+) ●(-)               │
-│                                                                  │
-│              REMOTE CONTROLLER                                   │
-└─────────────────────────────────────────────────────────────────┘
-```
+| Panel feature | Size | Use in 2S design |
+|---------------|------|------------------|
+| Front: 8x ∅8mm holes (4 pairs) | 8mm | Channel binding posts — unchanged |
+| Front: ∅5mm hole (top-right) | 5mm | Status LED — unchanged |
+| Rear: ∅12mm round hole | 12mm | DaierTek barrel jack — correct size |
+| Rear: 20x13mm slot | 20x13mm | Panel-mount blade fuse holder |
+| Rear: 9x3.5mm slot | 9x3.5mm | USB-C — kept open for firmware flashing / serial |
+| Both: 4x ∅3mm corner holes | 3mm | M3 panel mounting |
 
-### Front Panel Hole Positions (all Y = 26.5mm from bottom)
-
-| Feature | Hole | X position | Y position |
-|---------|------|-----------|-----------|
-| CH1 + (red) | ∅8mm | 10.5mm | 26.5mm |
-| CH1 − (black) | ∅8mm | 20.5mm | 26.5mm |
-| CH2 + (red) | ∅8mm | 34.5mm | 26.5mm |
-| CH2 − (black) | ∅8mm | 44.5mm | 26.5mm |
-| CH3 + (red) | ∅8mm | 58.5mm | 26.5mm |
-| CH3 − (black) | ∅8mm | 68.5mm | 26.5mm |
-| CH4 + (red) | ∅8mm | 82.5mm | 26.5mm |
-| CH4 − (black) | ∅8mm | 92.5mm | 26.5mm |
-| Status LED | ∅5mm | 94.0mm | 43.0mm |
-| Corner screws (×4) | ∅3mm | 5mm from each corner | 5mm from each corner |
-
-Post spacing within each pair: **10mm** center-to-center
-Gap between channel pairs: **14mm**
+> The rear USB-C cutout is intentionally kept open even though USB is no longer used for power. It preserves wired firmware flashing and serial debug access to the ESP32-S3 Super Mini.
 
 ---
 
-## Rear Panel Layout
+## Front Panel Hole Positions (Y = 26.5mm center)
 
-The rear panel carries power management connections.
+| Feature | Hole | X position |
+|---------|------|-----------|
+| CH1 + / - | ∅8mm | 10.5 / 20.5mm |
+| CH2 + / - | ∅8mm | 34.5 / 44.5mm |
+| CH3 + / - | ∅8mm | 58.5 / 68.5mm |
+| CH4 + / - | ∅8mm | 82.5 / 92.5mm |
+| Status LED | ∅5mm | 94.0mm (Y=43mm) |
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                                                                  │
-│   ┌──────────┐        ◯              ┌───────────┐             │
-│   │  POWER   │    12V CHARGE         │ USB-C CHG │             │
-│   │  SWITCH  │    (LiFePO4)          │  (18650)  │             │
-│   └──────────┘                       └───────────┘             │
-│                                                                  │
-│              REMOTE CONTROLLER                                   │
-└─────────────────────────────────────────────────────────────────┘
-```
+Post spacing within a pair: 10mm. Gap between channels: 14mm.
 
-### Rear Panel Hole Positions
+## Rear Panel Hole Positions (Y = 26.5mm center)
 
-| Feature | Hole | X position | Y position |
-|---------|------|-----------|-----------|
-| Master switch SW1 | 20×13mm slot | 22mm center | 26.5mm center |
-| 12V charge port J1 | ∅12mm | 52mm center | 26.5mm center |
-| USB-C charge port J2 | 9×3.5mm slot | 87mm center | 26.5mm center |
-| Corner screws (×4) | ∅3mm | 5mm from each corner | 5mm from each corner |
+| Feature | Hole | X position |
+|---------|------|-----------|
+| Fuse holder | 20x13mm slot | 22mm |
+| Charge jack J1 | ∅12mm | 52mm |
+| USB-C (flashing) | 9x3.5mm slot | 87mm |
 
 ---
 
-## Drilling Instructions
+## DXF Files
 
-### Tools Required
+`/hardware/front_panel.dxf` and `/hardware/rear_panel.dxf` contain four layers:
+- `CUT` (red) — holes and slots
+- `ENGRAVE` (blue) — labels
+- `OUTLINE` (black) — panel boundary, reference only
+- `DIMENSION` (gray) — measurements, reference only
 
-| Tool | Use |
-|------|-----|
-| Step drill bit (4–22mm) | All round holes — 5mm, 8mm, 12mm in one tool |
-| Center punch | Mark every hole before drilling |
-| Painter's tape | Cover panel surface to prevent scratches |
-| Hand file or rotary tool | Rectangular slots (switch, USB-C) |
-| Countersink bit | Deburr all holes after drilling |
-| Ruler and marker | Transfer measurements |
-
-### Procedure
-
-1. Print the DXF at 1:1 scale on paper (verify with ruler before using)
-2. Tape the paper template to the panel, aligned with corners
-3. Center punch through paper at every hole center
-4. Remove paper template
-5. Apply painter's tape over the panel face
-6. Drill all round holes with step drill bit, working up through sizes
-7. For rectangular slots: drill 4 corner holes, then file or nibble between them
-8. Deburr all holes with countersink bit
-9. Remove tape and clean panel
-
-### Tips
-
-- Clamp the panel firmly — aluminum grabs drill bits if the panel shifts
-- Use cutting fluid or WD-40 on the drill bit for cleaner holes and longer bit life
-- The step drill makes clean holes in thin aluminum without grabbing — preferred over twist bits for panel work
-- For the rocker switch slot, a nibbling tool (cheap from Amazon) gives the cleanest result without a file
+These import directly into SendCutSend, Front Panel Express, or any CAD/CAM tool.
 
 ---
 
 ## Panel Labeling
 
-### Option 1 — Label Maker (immediate)
+For now a label maker works fine. For a professional finish, the DXF `ENGRAVE` layer can be sent to SendCutSend (engraving) or Front Panel Express for laser-engraved, anodized labels.
 
-A Dymo or Brother label maker with white text on clear or black tape works well. Print individual labels for each channel and the rear panel connectors. Not as crisp as engraving but perfectly functional.
-
-Apply labels slightly above or below the holes so they're not obscured by the connectors.
-
-### Option 2 — Front Panel Express (professional)
-
-[frontpanelexpress.com](https://www.frontpanelexpress.com) — upload the DXF files from `/hardware/`, set material to black anodized aluminum, assign the `CUT` layer to machining and `ENGRAVE` layer to engraving. Expect ~$25–40 for both panels shipped. Lead time typically 1–2 weeks.
-
-The result looks completely commercial — laser-engraved white text, precision-machined holes.
-
-### Option 3 — Vinyl cut decal
-
-Services like Sticker Mule or a local sign shop can cut white vinyl labels from the DXF artwork. Adhesive-backed, reasonably durable, lower cost than engraving.
+Suggested labels: CH1-CH4 above each binding post pair, "CHARGE" by the barrel jack, "FUSE 5A" by the fuse holder, polarity + / - marks per post.
 
 ---
 
 ## Internal Mounting
 
-### PCB
-
-The 1455N1601BK has extruded internal rails running the length of the enclosure body. These accept standard 100mm Eurocard PCBs sliding in horizontally. If your ElectroCookie board is close to 100mm wide, it may slide in directly. Otherwise use M3 standoffs screwed to the enclosure floor.
-
-### LiFePO4 Battery
-
-Secure with a 20mm wide hook-and-loop (Velcro) strap around the battery and through a pair of small holes in the enclosure floor, or use a strip of double-sided foam tape rated for the battery weight (~300g). The battery should not be able to shift during transport.
-
-### 18650 Holder
-
-Double-sided foam tape to the enclosure floor or a small 3D-printed bracket clipped to the PCB standoffs.
-
-### Cable Management
-
-- Keep 12V output wires (relay NO to binding posts) as short and direct as possible
-- Twist the 12V power pair (BAT+ and BAT− from LiFePO4) loosely to reduce EMI
-- Leave enough slack on panel-mounted component wires to allow the end panels to swing open ~45° for servicing
-
----
-
-## 3D-Printed Parts
-
-### Hole Tolerances
-
-These radii are tuned for black PETG on a 0.4mm nozzle. Adjust ±0.1mm if your printer runs large or small.
-
-| Feature | Nominal | Print radius | Print diameter |
-|---------|---------|-------------|----------------|
-| M3 mounting hole | M3 | r = 1.6mm | ∅3.2mm |
-| Button hole | ∅8mm | r = 4.2mm | ∅8.4mm |
-| LED hole | ∅5mm | r = 2.6mm | ∅5.2mm |
-| Barrel jack hole | ∅12mm | r = 6.2mm | ∅12.4mm |
-
-For rectangular cutouts (rocker switch, USB-C), add **+0.2mm clearance on all sides** relative to the connector's body dimension.
-
-### Print Settings
-
-| Setting | Value |
-|---------|-------|
-| Material | Black PETG |
-| Layer height | 0.15mm |
-| Infill | 40% |
-| Orientation | Top face down (improves surface quality on the visible face) |
+- **PCB:** M3 standoffs to the floor, or slide into the enclosure's internal rails
+- **Relay module:** bolted flat to the floor via M3 through its corner holes
+- **2S pack:** hook-and-loop strap to the floor so it can't shift
+- **Fuse holder + barrel jack:** panel-mounted on the rear, wired with enough slack to swing the panel open ~45 deg for servicing

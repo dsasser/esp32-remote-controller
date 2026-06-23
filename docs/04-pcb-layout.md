@@ -1,123 +1,66 @@
 # 04 — PCB Layout
 
-## Using ElectroCookie Boards
+## Medium ElectroCookie — Three-Zone Layout
 
-This design uses ElectroCookie solderable breadboard PCBs rather than a custom-fabricated board. The ElectroCookie format provides pre-routed power rails, a 5V bus, GND bus, and an ESP32 footprint — eliminating most of the custom layout work.
-
-If you have the **snap-apart grid sheet** style, cut a section approximately 100mm × 80mm. If you have the **ESP32 Mini solderable board**, use it directly — the form factor fits the Hammond enclosure with room to spare.
-
----
-
-## Zone Map
-
-Divide the board into functional zones and populate in this order:
+The build uses a **medium black ElectroCookie board (~80x60mm)**. The relay module mounts separately on the enclosure floor, keeping the board compact. Components organize into three left-to-right zones.
 
 ```
-┌─────────────────────────────────────────────────────┐
-│  ZONE 1         │  ZONE 2              │  ZONE 3    │
-│  Battery conn.  │  Fuse F1 + SW1 conn  │  Charge J1 │
-│  XT60 or screw  │  (wires to panel)    │  (to panel)│
-├─────────────────┴──────────┬────────────────────────┤
-│  ZONE 4                    │  ZONE 5                │
-│  TP4056 + MT3608           │  ESP32-S3 Super Mini   │
-│  18650 logic power chain   │  (on female headers)   │
-├────────────────────────────┴───────────┬────────────┤
-│  ZONE 6                                │  ZONE 7    │
-│  Relay module K1                       │  Output    │
-│  (on female headers, removable)        │  terminals │
-│                                        │  to posts  │
-├────────────────────────────────────────┴────────────┤
-│  GND copper pour / GND bus trace runs full width    │
-└─────────────────────────────────────────────────────┘
++--------------------------------------------------------------+
+|  POWER IN (left)   |   LOGIC (center)      |  OUTPUT (right) |
+|                    |                       |                 |
+|  [BATT IN screw]   |  [ESP32-S3 on         |  [TVS D2]       |
+|  [FUSE screw]      |   female headers]     |  [TVS D3]       |
+|  [BARREL screw]    |                       |  [TVS D4]       |
+|  [RELAY SIG screw] |  [MT3608 boost]       |  [TVS D5]       |
+|  (6-wire ribbon)   |  [status LED tap]     |  [OUTPUT screw  |
+|                    |                       |   terminals]    |
++--------------------------------------------------------------+
+            GND rail / 7.4V rail run along board edges
 ```
 
 ---
 
-## Placement Rules
+## Zone Detail
 
-### Power Components
+### Left Zone — Power & External Connections
+All screw terminals for things that leave the board:
+- **BATT IN** — 7.4V from the 2S BMS (P+/P-)
+- **FUSE** — out to / back from the panel-mount 5A blade fuse
+- **BARREL** — charge jack connection (to BMS charge input)
+- **RELAY SIGNAL** — 6-wire ribbon terminals (GND, 5V, IN1-4) to the off-board relay
 
-- Place F1 fuse holder and SW1 wiring at the **first point** after BAT+. Nothing on the 12V rail before the fuse.
-- TP4056 and MT3608 should sit close together — the wire between TP4056 OUT+ and MT3608 IN+ carries 18650 discharge current and should be short.
-- C1 (100µF decoupling cap) mounts as close as possible to the ESP32 5V pin — within 10mm ideally.
-- C2–C5 (0.1µF) mount one per relay IN pin, within 10mm of each.
+### Center Zone — Logic
+- **ESP32-S3 Super Mini** on two rows of female 2.54mm headers (the Super Mini is narrow — use 8-pin rows). Socketed so it lifts out.
+- **MT3608 boost** — mount first, adjust to 5.0V before anything else is connected.
+- Status LED tap point — GPIO2 through R1 out to a flying lead to the panel LED.
 
-### ESP32-S3 Super Mini
-
-- Mount on **female 2.54mm headers** — board plugs in and out without soldering.
-- Orient the board so the USB-C port faces toward the rear of the enclosure or is accessible via a short USB-C panel extension cable for firmware flashing.
-- Keep 5mm clearance around the WiFi/BLE antenna end of the board — no copper pour underneath the antenna overhang.
-
-### Relay Module K1
-
-- Mount on **female 2.54mm headers** — fully removable for replacement.
-- Position so the relay output screw terminals (COM/NO/NC) face toward the output side of the enclosure.
-- The 5V VCC/GND/IN pins face the ESP32 side.
-
-### Output Wiring
-
-- Run 18 AWG wire from relay NO terminals directly to the binding posts — do not route through the PCB for these high-current lines if possible.
-- TVS diodes D2–D5 mount as close to the binding post terminals as the layout allows — their job is to clamp spikes at the output.
+### Right Zone — Output
+- **TVS diodes D2-D5** on the output side of the relay NO contacts, cathode toward the positive output.
+- **Output screw terminals** to the four binding post pairs.
 
 ---
 
-## Trace / Wire Sizing
+## Assembly Notes
 
-| Connection | Size | Notes |
-|-----------|------|-------|
-| 12V bus | 18 AWG or 20mil PCB trace | Fused at 5A |
-| 12V relay output | 18 AWG wire (not PCB trace) | Direct to binding posts |
-| 5V logic bus | 22 AWG or 15mil PCB trace | ESP32 + relay coils |
-| GPIO signals | 24 AWG or 10mil PCB trace | Signal only |
-| GND bus | 18 AWG or copper pour | Common return |
-
----
-
-## Module Mounting
-
-All major modules mount on 2.54mm pin headers — **nothing is soldered directly to the board except passives and wiring terminals.** This means every module (ESP32, relay, TP4056, MT3608) can be replaced without desoldering.
-
-```
-Board (female header)
-  └── Module (male header pins)
-```
-
-For the TP4056 and MT3608 which are small bare modules, solder short male header pins to their pads and use corresponding female headers on the board, or use small screw terminal blocks for the IN/OUT connections.
+1. The ESP32-S3 Super Mini is narrow — use two rows of 8-pin female headers.
+2. Mount the MT3608 first and adjust it to 5.0V with a multimeter before connecting anything else. The pot is sensitive.
+3. The relay module mounts separately on the Hammond's internal floor via M3 screws through its corner holes. Run a 6-wire ribbon (GND, 5V, IN1, IN2, IN3, IN4) from the relay signal terminals on the PCB to the relay board.
+4. TVS diodes go on the output side of the relay NO contacts — between the relay and the binding posts. Cathode toward the positive output.
+5. The LED lead needs to reach the front panel hole — solder a ~15cm wire extension with heat shrink on the joints.
+6. Keep 7.4V power traces (battery, fuse, output) on one side of the board and 5V/signal on the other where possible, for noise isolation.
+7. Use 18 AWG wire for all 7.4V power connections. 22 AWG is fine for 5V logic and GPIO signals.
 
 ---
 
-## Internal Stacking Order
-
-The Hammond 1455N1601BK gives ~45mm of usable internal height. The layout stacks as follows:
+## Internal Mounting
 
 ```
-Top (enclosure lid)
-─────────────────────────────────────
-  relay module (tallest component ~20mm with housing)
-  ESP32-S3 Super Mini on headers
-  ElectroCookie PCB (~2mm)
-  PCB standoffs (~5mm) mounted to enclosure floor rails
-─────────────────────────────────────
-  LiFePO4 battery (~30mm tall, sits beside PCB)
-  18650 holder (flat, mounted to board or enclosure floor)
-─────────────────────────────────────
-Bottom (enclosure floor / internal PCB rails)
+Hammond 1455N1601BK floor:
+  - ElectroCookie PCB on M3 standoffs (or enclosure rails)
+  - VNFOCKQSH relay module bolted flat to floor (M3)
+  - 2S 18650 pack secured with hook-and-loop strap
+  - Panel-mount fuse holder and barrel jack on rear panel
+  - Binding posts and LED on front panel
 ```
 
-The LiFePO4 battery sits alongside the PCB rather than under it — the Hammond enclosure internal width of ~95mm gives room for a ~60mm wide battery beside an ~80mm wide PCB.
-
-Secure the LiFePO4 battery with a strip of hook-and-loop (Velcro) to the enclosure floor. Secure the 18650 holder with double-sided foam tape or a small 3D-printed bracket.
-
----
-
-## PCB Fabrication Option
-
-If you prefer a custom PCB over ElectroCookie:
-
-- **Board size:** 100mm × 80mm recommended
-- **Layers:** 2-layer FR4, 1oz copper
-- **Surface finish:** HASL or ENIG
-- **Holes:** 4× M3 mounting holes at corners
-- **Software:** KiCad (free) — ESP32-S3 Super Mini footprint available in community libraries
-
-JLCPCB or OSHPark will fabricate 5 copies for under $15 shipped.
+The off-board relay and single battery pack leave plenty of room inside the enclosure. The 6-wire ribbon gives enough slack to lift the PCB out for servicing without disconnecting the relay.

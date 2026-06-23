@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="720" viewBox="0 0 860 720" font-family="sans-serif">
+  <title>4-Channel Remote Igniter Controller — 2S Single-Battery Schematic</title>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="860" height="720" fill="#ffffff"/>
+
+  <!-- Title -->
+  <rect x="12" y="10" width="836" height="30" rx="4" fill="none" stroke="#cccccc"/>
+  <text x="430" y="30" text-anchor="middle" font-size="14" font-weight="600" fill="#1a1a1a">4-Channel Remote Igniter Controller — 2S Single-Battery (Rev 3)</text>
+
+  <!-- Legend -->
+  <rect x="12" y="48" width="836" height="24" rx="0" fill="#f7f7f7" stroke="#dddddd"/>
+  <line x1="24" y1="60" x2="48" y2="60" stroke="#c2410c" stroke-width="3"/>
+  <text x="52" y="64" font-size="10" fill="#555">7.4V raw (igniter firing)</text>
+  <line x1="200" y1="60" x2="224" y2="60" stroke="#0f6e56" stroke-width="2.5"/>
+  <text x="228" y="64" font-size="10" fill="#555">5V boosted logic</text>
+  <line x1="340" y1="60" x2="364" y2="60" stroke="#444" stroke-width="2"/>
+  <text x="368" y="64" font-size="10" fill="#555">GND</text>
+  <line x1="420" y1="60" x2="444" y2="60" stroke="#534ab7" stroke-width="1.5"/>
+  <text x="448" y="64" font-size="10" fill="#555">GPIO signal (6-wire ribbon)</text>
+  <line x1="620" y1="60" x2="644" y2="60" stroke="#993c1d" stroke-width="3"/>
+  <text x="648" y="64" font-size="10" fill="#555">switched output to igniter</text>
+
+  <!-- SECTION A: 2S Battery Pack -->
+  <text x="16" y="96" font-size="10" fill="#888">A — 2S BATTERY PACK + CHARGING</text>
+  <line x1="16" y1="100" x2="844" y2="100" stroke="#eee"/>
+
+  <!-- 2S pack -->
+  <rect x="16" y="110" width="130" height="78" rx="4" fill="#fafafa" stroke="#999"/>
+  <text x="81" y="130" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">B1  2S Pack</text>
+  <text x="81" y="146" text-anchor="middle" font-size="9" fill="#666">2× Samsung 30Q</text>
+  <text x="81" y="159" text-anchor="middle" font-size="9" fill="#666">in series — 7.4V</text>
+  <text x="81" y="172" text-anchor="middle" font-size="9" fill="#666">~3000mAh</text>
+  <text x="148" y="128" font-size="9" fill="#c2410c">+</text>
+  <text x="148" y="184" font-size="9" fill="#444">−</text>
+
+  <!-- 2S BMS -->
+  <rect x="176" y="110" width="110" height="78" rx="4" fill="#fafafa" stroke="#999"/>
+  <text x="231" y="130" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">2S BMS</text>
+  <text x="231" y="146" text-anchor="middle" font-size="9" fill="#666">protection board</text>
+  <text x="231" y="159" text-anchor="middle" font-size="9" fill="#666">10A+ rated</text>
+  <text x="231" y="172" text-anchor="middle" font-size="9" fill="#666">B+/B− → P+/P−</text>
+  <line x1="146" y1="124" x2="176" y2="124" stroke="#c2410c" stroke-width="3"/>
+  <line x1="146" y1="180" x2="160" y2="180" stroke="#444" stroke-width="2"/>
+  <line x1="160" y1="180" x2="160" y2="124" stroke="#444" stroke-width="0"/>
+
+  <!-- Charge jack -->
+  <rect x="16" y="206" width="130" height="46" rx="4" fill="#fafafa" stroke="#999"/>
+  <text x="81" y="224" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">J1  Charge Jack</text>
+  <text x="81" y="238" text-anchor="middle" font-size="9" fill="#666">DaierTek 5.5×2.1mm</text>
+  <text x="81" y="249" text-anchor="middle" font-size="8" fill="#888">← 8.4V wall charger</text>
+  <line x1="146" y1="220" x2="231" y2="220" stroke="#888" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="231" y1="220" x2="231" y2="188" stroke="#888" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="150" y="216" font-size="8" fill="#888">charges pack via BMS</text>
+
+  <!-- 7.4V BUS -->
+  <text x="300" y="120" font-size="10" font-weight="600" fill="#c2410c">7.4V BUS</text>
+  <line x1="286" y1="124" x2="844" y2="124" stroke="#c2410c" stroke-width="3"/>
+  <circle cx="430" cy="124" r="3" fill="#c2410c"/>
+  <circle cx="620" cy="124" r="3" fill="#c2410c"/>
+  <!-- GND BUS -->
+  <text x="300" y="184" font-size="10" font-weight="600" fill="#444">GND BUS</text>
+  <line x1="160" y1="180" x2="844" y2="180" stroke="#444" stroke-width="2"/>
+  <circle cx="430" cy="180" r="3" fill="#444"/>
+  <circle cx="620" cy="180" r="3" fill="#444"/>
+
+  <!-- Fuse on 7.4V bus -->
+  <rect x="310" y="106" width="86" height="34" rx="4" fill="#fff5f0" stroke="#c2410c"/>
+  <text x="353" y="121" text-anchor="middle" font-size="10" font-weight="600" fill="#c2410c">F1  5A Fuse</text>
+  <text x="353" y="134" text-anchor="middle" font-size="8" fill="#999">blade, panel-mt</text>
+
+  <!-- SECTION B: Logic Power -->
+  <text x="16" y="284" font-size="10" fill="#888">B — LOGIC POWER</text>
+  <line x1="16" y1="288" x2="844" y2="288" stroke="#eee"/>
+
+  <!-- MT3608 -->
+  <rect x="16" y="298" width="150" height="64" rx="4" fill="#fafafa" stroke="#999"/>
+  <text x="91" y="318" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">U1  MT3608 Boost</text>
+  <text x="91" y="333" text-anchor="middle" font-size="9" fill="#666">7.4V → 5.0V</text>
+  <text x="91" y="346" text-anchor="middle" font-size="9" fill="#b45309">adjust pot to 5.0V first</text>
+  <text x="91" y="358" text-anchor="middle" font-size="8" fill="#888">before connecting ESP32</text>
+  <!-- 7.4V in to boost -->
+  <line x1="430" y1="124" x2="430" y2="318" stroke="#c2410c" stroke-width="2"/>
+  <line x1="430" y1="318" x2="166" y2="318" stroke="#c2410c" stroke-width="2"/>
+  <!-- gnd -->
+  <line x1="430" y1="180" x2="430" y2="350" stroke="#444" stroke-width="0"/>
+  <line x1="166" y1="350" x2="180" y2="350" stroke="#444" stroke-width="2"/>
+  <line x1="180" y1="350" x2="180" y2="180" stroke="#444" stroke-width="2"/>
+
+  <!-- 5V bus -->
+  <text x="210" y="316" font-size="10" font-weight="600" fill="#0f6e56">5V BUS</text>
+  <line x1="166" y1="330" x2="844" y2="330" stroke="#0f6e56" stroke-width="2.5"/>
+  <circle cx="540" cy="330" r="3" fill="#0f6e56"/>
+  <circle cx="660" cy="330" r="3" fill="#0f6e56"/>
+
+  <!-- SECTION C: ESP32 + relay -->
+  <text x="16" y="386" font-size="10" fill="#888">C — ESP32-S3 SUPER MINI + RELAY (off-board, 6-wire ribbon)</text>
+  <line x1="16" y1="390" x2="844" y2="390" stroke="#eee"/>
+
+  <!-- ESP32 -->
+  <rect x="16" y="400" width="170" height="150" rx="4" fill="#fafafa" stroke="#999"/>
+  <text x="101" y="420" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">U2  ESP32-S3 Super Mini</text>
+  <text x="101" y="434" text-anchor="middle" font-size="9" fill="#666">BLE 5.0 / WiFi · socketed</text>
+  <text x="22" y="454" font-size="9" fill="#666">5V pin</text>
+  <text x="22" y="470" font-size="9" fill="#666">GND</text>
+  <text x="22" y="486" font-size="9" fill="#666">GPIO4 → IN1</text>
+  <text x="22" y="502" font-size="9" fill="#666">GPIO5 → IN2</text>
+  <text x="22" y="518" font-size="9" fill="#666">GPIO6 → IN3</text>
+  <text x="22" y="534" font-size="9" fill="#666">GPIO7 → IN4</text>
+  <text x="120" y="486" font-size="9" fill="#666">GPIO2 → LED</text>
+
+  <!-- 5V to ESP32 -->
+  <line x1="540" y1="330" x2="540" y2="450" stroke="#0f6e56" stroke-width="2.5"/>
+  <line x1="540" y1="450" x2="186" y2="450" stroke="#0f6e56" stroke-width="2.5"/>
+  <!-- gnd -->
+  <line x1="186" y1="466" x2="200" y2="466" stroke="#444" stroke-width="2"/>
+  <line x1="200" y1="466" x2="200" y2="180" stroke="#444" stroke-width="2"/>
+
+  <!-- Status LED -->
+  <rect x="120" y="496" width="60" height="0" fill="none"/>
+  <rect x="196" y="500" width="120" height="30" rx="4" fill="#fafafa" stroke="#999"/>
+  <text x="256" y="514" text-anchor="middle" font-size="10" font-weight="600" fill="#1a1a1a">D1 + R1</text>
+  <text x="256" y="525" text-anchor="middle" font-size="8" fill="#666">green LED + 330Ω (panel)</text>
+  <line x1="186" y1="486" x2="196" y2="486" stroke="#534ab7" stroke-width="1.5"/>
+  <line x1="196" y1="486" x2="196" y2="500" stroke="#534ab7" stroke-width="1.5"/>
+
+  <!-- Relay module -->
+  <rect x="380" y="400" width="210" height="150" rx="4" fill="#fafafa" stroke="#999"/>
+  <text x="485" y="420" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">K1  VNFOCKQSH Relay</text>
+  <text x="485" y="434" text-anchor="middle" font-size="9" fill="#666">5V 4-ch · optocoupler isolated</text>
+  <text x="485" y="447" text-anchor="middle" font-size="8" fill="#888">mounts on enclosure floor (M3)</text>
+  <text x="386" y="468" font-size="9" fill="#666">VCC (5V)</text>
+  <text x="386" y="484" font-size="9" fill="#666">GND</text>
+  <text x="386" y="500" font-size="9" fill="#666">IN1  IN2  IN3  IN4</text>
+  <text x="386" y="524" font-size="8" fill="#888">H/L trigger jumper → match firmware</text>
+  <text x="386" y="540" font-size="8" fill="#888">JD-VCC jumper removed</text>
+
+  <!-- 5V to relay VCC -->
+  <line x1="660" y1="330" x2="660" y2="462" stroke="#0f6e56" stroke-width="2.5"/>
+  <line x1="660" y1="462" x2="590" y2="462" stroke="#0f6e56" stroke-width="2.5"/>
+  <!-- relay gnd -->
+  <line x1="590" y1="478" x2="610" y2="478" stroke="#444" stroke-width="2"/>
+  <line x1="610" y1="478" x2="610" y2="180" stroke="#444" stroke-width="2"/>
+
+  <!-- Ribbon: GPIO to relay IN -->
+  <line x1="186" y1="494" x2="360" y2="494" stroke="#534ab7" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <line x1="360" y1="494" x2="360" y2="500" stroke="#534ab7" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <line x1="360" y1="500" x2="380" y2="500" stroke="#534ab7" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <text x="250" y="490" font-size="8" fill="#534ab7">6-wire ribbon: GND, 5V, IN1–4</text>
+
+  <!-- Relay COM/NO out -->
+  <text x="594" y="470" font-size="9" fill="#666">COM×4 ← 7.4V</text>
+  <text x="594" y="500" font-size="9" fill="#666">NO×4 → outputs</text>
+  <!-- 7.4V to relay COM -->
+  <line x1="620" y1="124" x2="620" y2="466" stroke="#c2410c" stroke-width="2"/>
+  <line x1="620" y1="466" x2="590" y2="466" stroke="#c2410c" stroke-width="0"/>
+  <line x1="700" y1="124" x2="700" y2="466" stroke="#c2410c" stroke-width="2"/>
+  <line x1="700" y1="466" x2="590" y2="466" stroke="#c2410c" stroke-width="2"/>
+
+  <!-- SECTION D: outputs -->
+  <text x="16" y="576" font-size="10" fill="#888">D — OUTPUT CHANNELS (×4 identical, TVS-protected)</text>
+  <line x1="16" y1="580" x2="844" y2="580" stroke="#eee"/>
+
+  <!-- CH1 -->
+  <rect x="16" y="590" width="190" height="50" rx="4" fill="#fafafa" stroke="#999"/>
+  <text x="111" y="608" text-anchor="middle" font-size="10" font-weight="600" fill="#1a1a1a">CH1 — D2 TVS P6KE15A + BT1</text>
+  <text x="111" y="622" text-anchor="middle" font-size="8" fill="#666">cathode → + post · red/blk binding posts</text>
+  <text x="111" y="633" text-anchor="middle" font-size="8" fill="#888">→ Igniter 1 (alligator clips)</text>
+
+  <!-- CH2 -->
+  <rect x="220" y="590" width="190" height="50" rx="4" fill="#fafafa" stroke="#999"/>
+  <text x="315" y="608" text-anchor="middle" font-size="10" font-weight="600" fill="#1a1a1a">CH2 — D3 TVS + BT2</text>
+  <text x="315" y="622" text-anchor="middle" font-size="8" fill="#666">→ Igniter 2</text>
+
+  <!-- CH3 -->
+  <rect x="424" y="590" width="190" height="50" rx="4" fill="#fafafa" stroke="#999"/>
+  <text x="519" y="608" text-anchor="middle" font-size="10" font-weight="600" fill="#1a1a1a">CH3 — D4 TVS + BT3</text>
+  <text x="519" y="622" text-anchor="middle" font-size="8" fill="#666">→ Igniter 3</text>
+
+  <!-- CH4 -->
+  <rect x="628" y="590" width="190" height="50" rx="4" fill="#fafafa" stroke="#999"/>
+  <text x="723" y="608" text-anchor="middle" font-size="10" font-weight="600" fill="#1a1a1a">CH4 — D5 TVS + BT4</text>
+  <text x="723" y="622" text-anchor="middle" font-size="8" fill="#666">→ Igniter 4</text>
+
+  <!-- NO to channels -->
+  <line x1="590" y1="500" x2="640" y2="500" stroke="#993c1d" stroke-width="0"/>
+  <line x1="111" y1="640" x2="111" y2="654" stroke="#993c1d" stroke-width="2"/>
+  <line x1="315" y1="640" x2="315" y2="654" stroke="#993c1d" stroke-width="2"/>
+  <line x1="519" y1="640" x2="519" y2="654" stroke="#993c1d" stroke-width="2"/>
+  <line x1="723" y1="640" x2="723" y2="654" stroke="#993c1d" stroke-width="2"/>
+  <line x1="111" y1="654" x2="723" y2="654" stroke="#993c1d" stroke-width="2"/>
+  <line x1="417" y1="550" x2="417" y2="654" stroke="#993c1d" stroke-width="0"/>
+  <line x1="590" y1="500" x2="417" y2="500" stroke="#993c1d" stroke-width="2"/>
+  <line x1="417" y1="500" x2="417" y2="654" stroke="#993c1d" stroke-width="2"/>
+
+  <!-- Notes box -->
+  <rect x="16" y="668" width="828" height="44" rx="4" fill="#fcfcfc" stroke="#ddd"/>
+  <text x="26" y="684" font-size="9" fill="#666">Notes: 7.4V raw cell voltage fires Estes igniters directly (0.5–1A typical). MT3608 must be pre-set to 5.0V before connecting ESP32. Relay module is off-board on enclosure floor,</text>
+  <text x="26" y="698" font-size="9" fill="#666">linked by 6-wire ribbon. JD-VCC jumper removed; H/L trigger jumper set to match firmware GPIO polarity. TVS cathode (stripe) faces the positive binding post on every channel.</text>
+</svg>

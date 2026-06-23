@@ -113,7 +113,8 @@ At the top of `remote_controller.ino`, adjust these defines to customize behavio
 #define BLE_NAME  "RemoteBox"
 
 // Active LOW relay logic (true for most prebuilt relay modules)
-// Set to false if your relay fires on HIGH
+// Set to false if your relay fires on HIGH.
+// Match the VNFOCKQSH H/L trigger jumper to this setting.
 #define RELAY_ACTIVE_LOW  true
 ```
 
@@ -144,7 +145,7 @@ See the `firmware/esp_now_controller/` directory (planned — contributions welc
 
 | Problem | Likely cause | Fix |
 |---------|-------------|-----|
-| Relay clicks but device doesn't activate | 12V battery off or fuse blown | Check SW1 and F1 |
+| Relay clicks but igniter doesn't fire | Pack low or 5A fuse blown | Check fuse F1 and pack charge |
 | BLE not appearing in scan | Wrong board selected, or crash at boot | Check serial monitor at 115200 baud |
 | All relays fire on boot | Relay active-HIGH logic mismatch | Set `RELAY_ACTIVE_LOW false` |
 | Upload fails | ESP32-S3 not in download mode | Hold BOOT, tap RESET, release BOOT |

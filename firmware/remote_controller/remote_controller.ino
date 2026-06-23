@@ -1,9 +1,15 @@
 /**
- * Remote Controller Firmware
- * ESP32-S3 Super Mini — 4-Channel BLE Remote
+ * Remote Igniter Controller Firmware
+ * ESP32-S3 Super Mini — 4-Channel BLE Igniter Controller (hobby rocketry)
+ *
+ * Single 2S Li-ion pack (7.4V). Raw 7.4V fires Estes-type igniters through
+ * the relay contacts; MT3608 boosts 7.4V -> 5V for ESP32 + relay logic.
  *
  * BLE GATT Service with single writable characteristic.
  * Write "1"–"4" to fire channels, "A" for all, "S" for status.
+ *
+ * Relay: VNFOCKQSH 4-ch, optocoupler isolated. JD-VCC jumper removed.
+ * Set the module's H/L trigger jumper to match RELAY_ACTIVE_LOW below.
  *
  * License: MIT
  * Repository: https://github.com/[your-username]/remote-controller

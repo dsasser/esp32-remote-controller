@@ -1,36 +1,35 @@
-# ESP32-S3 4-Channel Remote Controller
+# ESP32-S3 4-Channel Remote Igniter Controller
 
-A portable, wireless 4-channel remote controller built around the ESP32-S3 Super Mini. Designed to deliver momentary 12V / 2A pulses to four independently switched output channels via BLE or WiFi. Housed in a Hammond 1455N1601BK anodized aluminum enclosure.
+A portable, wireless 4-channel remote igniter controller for **hobby rocketry**. Fires up to four Estes-type igniters independently over BLE from a phone. Single 2S Li-ion battery, ESP32-S3 Super Mini, in a Hammond 1455N1601BK anodized aluminum enclosure with custom SendCutSend panels.
 
-> **Status:** Hardware design complete. Firmware in active development.
+> **Status:** Hardware design finalized (2S single-battery). Firmware in active development.
 
-![Enclosure render placeholder](docs/images/enclosure_placeholder.png)
+![Schematic](docs/images/schematic.svg)
 
 ---
 
 ## Features
 
-- 4 independently switched 12V output channels
-- Up to 2A momentary current per channel (~1 second pulse)
-- BLE 5.0 control via phone app or custom handset
-- Optocoupler-isolated relay switching (ESP32 fully protected)
-- Dedicated 18650 logic power with USB-C charging
-- Separate 12.8V LiFePO4 switching battery with built-in BMS
-- TVS diode protection on all output channels
-- Status LED for BLE connectivity indication
-- Professional Hammond 1455N1601BK black aluminum enclosure
-- All modules socket-mounted — fully serviceable without soldering
-- Panel DXF files included for Front Panel Express / laser cutting
+- 4 independently fired channels for hobby igniters
+- 7.4V raw cell voltage fires Estes igniters directly (0.5-1A typical)
+- BLE 5.0 control via phone (WiFi / ESP-NOW options in firmware)
+- Single 2S pack: 2x Samsung 30Q 18650 + 2S BMS
+- One MT3608 boost (7.4V -> 5V) for ESP32 and relay logic
+- VNFOCKQSH optocoupler-isolated relay, mounted off-board
+- TVS diode protection per channel; panel-accessible 5A fuse
+- 8.4V barrel-jack charging through the BMS
+- Hammond aluminum enclosure with custom SendCutSend panels
+- Socketed ESP32 and off-board relay — fully serviceable
 
 ---
 
 ## Quick Start
 
-1. Order parts from [Bill of Materials](docs/02-bom.md)
+1. Order parts from the [Bill of Materials](docs/02-bom.md)
 2. Review the [Schematic](docs/03-schematic.md)
 3. Build following the [Assembly Guide](docs/07-assembly.md)
 4. Flash firmware from the [Firmware Guide](docs/06-firmware.md)
-5. Drill panels using [Enclosure Guide](docs/05-enclosure.md) and DXF files in `/hardware`
+5. Panels are pre-cut from the DXF files in [`/hardware`](hardware)
 
 ---
 
@@ -39,18 +38,20 @@ A portable, wireless 4-channel remote controller built around the ESP32-S3 Super
 ```
 remote-controller/
 ├── README.md
-├── LICENSE
+├── LICENSE                    CERN-OHL-P (hardware) + MIT (firmware)
 ├── docs/
-│   ├── 01-overview.md        System overview and design decisions
-│   ├── 02-bom.md             Full bill of materials with links
-│   ├── 03-schematic.md       Circuit schematic and wiring notes
-│   ├── 04-pcb-layout.md      PCB layout guide (ElectroCookie)
-│   ├── 05-enclosure.md       Hammond enclosure, drilling, panel labels
-│   ├── 06-firmware.md        BLE firmware, flashing, app setup
-│   └── 07-assembly.md        Step-by-step build order
+│   ├── 01-overview.md         Architecture, design decisions, specs
+│   ├── 02-bom.md              Full bill of materials
+│   ├── 03-schematic.md        Schematic + wiring (see images/schematic.svg)
+│   ├── 04-pcb-layout.md       ElectroCookie three-zone layout
+│   ├── 05-enclosure.md        Hammond enclosure + panel compatibility
+│   ├── 06-firmware.md         BLE firmware, flashing, testing
+│   ├── 07-assembly.md         Stage-by-stage build
+│   └── images/
+│       └── schematic.svg      Full schematic diagram
 ├── hardware/
-│   ├── front_panel.dxf       Front panel drill/engrave file
-│   └── rear_panel.dxf        Rear panel drill/engrave file
+│   ├── front_panel.dxf        Binding posts + LED
+│   └── rear_panel.dxf         Fuse + charge jack + USB-C
 └── firmware/
     └── remote_controller/
         └── remote_controller.ino
@@ -58,20 +59,36 @@ remote-controller/
 
 ---
 
+## Architecture at a Glance
+
+```
+[2S Pack 7.4V] -> [BMS] -+-> [5A fuse] -> relay COM x4 -> NO -> [TVS] -> posts -> igniters
+                         |
+                         +-> [MT3608 5V] -> ESP32-S3 + relay logic
+                                                |
+                                          BLE <- phone
+```
+
+---
+
 ## License
 
-Hardware and documentation: [CERN Open Hardware Licence v2 - Permissive (CERN-OHL-P)](LICENSE)
-
-Firmware: [MIT License](LICENSE)
+Hardware & docs: **CERN-OHL-P v2**. Firmware: **MIT**. See [LICENSE](LICENSE).
 
 ---
 
 ## Contributing
 
-Issues and PRs welcome. If you build one, please share photos — open an issue tagged `build-log`.
+Issues and PRs welcome. If you build one, share photos — open an issue tagged `build-log`.
+
+---
+
+## Safety
+
+This device fires pyrotechnic igniters. Relays default open at power-up; the firmware fires momentary pulses only. Follow NAR/Tripoli safety guidelines and maintain safe distance.
 
 ---
 
 ## Acknowledgements
 
-Designed with assistance from Claude (Anthropic). Schematic, BOM, DXF panel files, and firmware all generated and verified as part of this project.
+Designed with assistance from Claude (Anthropic).
