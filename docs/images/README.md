@@ -1,4 +1,14 @@
 # Images
 
-- `schematic.svg` — full system schematic (2S single-battery)
-- Add build photos here
+| File | What it is |
+|------|------------|
+| `schematic.svg` | Block / interconnect schematic (2S single-battery) |
+| `schematic-detail.svg` | Component-level engineering schematic — symbols, pins, rails, decoupling, per-channel TVS |
+| `assembled.svg` | Three-quarter render of the finished controller |
+| `parts-breakout.svg` | Every component, grouped by function with ref designators |
+| `front-panel.svg` | True-to-scale front panel elevation (generated from `hardware/front_panel.dxf`) |
+| `rear-panel.svg` | True-to-scale rear panel elevation (generated from `hardware/rear_panel.dxf`) |
+
+The two panel elevations are generated from the DXF source; if the DXFs change, regenerate rather than hand-editing the SVG.
+
+Add build photos here as the hardware comes together.

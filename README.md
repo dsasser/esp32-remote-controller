@@ -4,6 +4,8 @@ A portable, wireless 4-channel remote igniter controller for **hobby rocketry**.
 
 > **Status:** Hardware design finalized (2S single-battery). Firmware in active development.
 
+![Assembled controller](docs/images/assembled.svg)
+
 ![Schematic](docs/images/schematic.svg)
 
 ---
@@ -48,7 +50,12 @@ remote-controller/
 │   ├── 06-firmware.md         BLE firmware, flashing, testing
 │   ├── 07-assembly.md         Stage-by-stage build
 │   └── images/
-│       └── schematic.svg      Full schematic diagram
+│       ├── schematic.svg          Block / interconnect schematic
+│       ├── schematic-detail.svg   Component-level engineering schematic
+│       ├── assembled.svg          Assembled three-quarter render
+│       ├── parts-breakout.svg     Labelled parts breakout
+│       ├── front-panel.svg        True-to-scale front panel elevation
+│       └── rear-panel.svg         True-to-scale rear panel elevation
 ├── hardware/
 │   ├── front_panel.dxf        Binding posts + LED
 │   └── rear_panel.dxf         Fuse + charge jack + USB-C
@@ -68,6 +75,17 @@ remote-controller/
                                                 |
                                           BLE <- phone
 ```
+
+---
+
+## Drawings & Renders
+
+| Drawing | Description |
+|---------|-------------|
+| [Assembled render](docs/images/assembled.svg) | Three-quarter view of the finished controller |
+| [Parts breakout](docs/images/parts-breakout.svg) | Every component, grouped by function |
+| [Component schematic](docs/images/schematic-detail.svg) | Net-level schematic for build / debug |
+| [Front panel](docs/images/front-panel.svg) · [Rear panel](docs/images/rear-panel.svg) | True-to-scale elevations generated from the `/hardware` DXFs |
 
 ---
 

@@ -28,6 +28,20 @@ When the design consolidated to a single 2S battery with barrel-jack charging, t
 
 ---
 
+## Panel Elevations
+
+These elevations are generated directly from the `/hardware` DXF coordinates, so they are true to scale (1:1 in mm). `CUT` features are red, `ENGRAVE` labels blue, dimensions gray.
+
+**Front panel** — 4 binding-post pairs (CH1–CH4), status LED, 4× M3 corner holes:
+
+![Front panel elevation](images/front-panel.svg)
+
+**Rear panel** — fuse slot, charge jack, USB-C cutout, 4× M3 corner holes:
+
+![Rear panel elevation](images/rear-panel.svg)
+
+---
+
 ## Front Panel Hole Positions (Y = 26.5mm center)
 
 | Feature | Hole | X position |
