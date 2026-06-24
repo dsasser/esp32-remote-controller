@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="430" viewBox="0 0 680 430" font-family="sans-serif" role="img">
+<title>Assembled 4-channel remote ignitor — three-quarter view</title>
+<desc>The finished device: a black anodized Hammond aluminum enclosure with a front panel carrying four pairs of red and black banana binding posts labeled CH1 to CH4 and a green status LED.</desc>
+<defs>
+<marker id="lead" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><circle cx="4" cy="4" r="2.5" fill="#5F5E5A"/></marker>
+</defs>
+
+<rect x="0" y="0" width="680" height="430" fill="#fbfbfa"/>
+
+<polygon points="60,120 400,120 570,25 230,25" fill="#46453f" stroke="#615f57" stroke-width="1.5"/>
+<polygon points="400,120 400,295 570,200 570,25" fill="#201f1d" stroke="#3a3a36" stroke-width="1.5"/>
+<line x1="400" y1="160" x2="570" y2="65" stroke="#34332f" stroke-width="1.5"/>
+<line x1="400" y1="205" x2="570" y2="110" stroke="#34332f" stroke-width="1.5"/>
+<line x1="400" y1="250" x2="570" y2="155" stroke="#34332f" stroke-width="1.5"/>
+
+<rect x="60" y="120" width="340" height="175" fill="#2b2b29" stroke="#615f57" stroke-width="1.5"/>
+<rect x="67" y="127" width="326" height="161" fill="none" stroke="#3d3d39" stroke-width="1"/>
+
+<circle cx="79" cy="139" r="2.6" fill="#7d7d76"/>
+<circle cx="381" cy="139" r="2.6" fill="#7d7d76"/>
+<circle cx="79" cy="276" r="2.6" fill="#7d7d76"/>
+<circle cx="381" cy="276" r="2.6" fill="#7d7d76"/>
+
+<text x="111" y="172" text-anchor="middle" font-size="13" fill="#cfcdc4">CH1</text>
+<text x="190" y="172" text-anchor="middle" font-size="13" fill="#cfcdc4">CH2</text>
+<text x="269" y="172" text-anchor="middle" font-size="13" fill="#cfcdc4">CH3</text>
+<text x="349" y="172" text-anchor="middle" font-size="13" fill="#cfcdc4">CH4</text>
+
+<g font-size="11" font-weight="500" fill="#ffffff" text-anchor="middle">
+<circle cx="95" cy="208" r="10.5" fill="#c1402a" stroke="#6e1f12" stroke-width="1.5"/><text x="95" y="212">+</text>
+<circle cx="128" cy="208" r="10.5" fill="#1b1b1a" stroke="#000000" stroke-width="1.5"/><text x="128" y="212">&#8211;</text>
+<circle cx="174" cy="208" r="10.5" fill="#c1402a" stroke="#6e1f12" stroke-width="1.5"/><text x="174" y="212">+</text>
+<circle cx="207" cy="208" r="10.5" fill="#1b1b1a" stroke="#000000" stroke-width="1.5"/><text x="207" y="212">&#8211;</text>
+<circle cx="253" cy="208" r="10.5" fill="#c1402a" stroke="#6e1f12" stroke-width="1.5"/><text x="253" y="212">+</text>
+<circle cx="286" cy="208" r="10.5" fill="#1b1b1a" stroke="#000000" stroke-width="1.5"/><text x="286" y="212">&#8211;</text>
+<circle cx="332" cy="208" r="10.5" fill="#c1402a" stroke="#6e1f12" stroke-width="1.5"/><text x="332" y="212">+</text>
+<circle cx="365" cy="208" r="10.5" fill="#1b1b1a" stroke="#000000" stroke-width="1.5"/><text x="365" y="212">&#8211;</text>
+</g>
+
+<circle cx="368" cy="151" r="6.5" fill="#9bcb5d" stroke="#3B6D11" stroke-width="1.5"/>
+<circle cx="365.5" cy="148.5" r="1.8" fill="#eaf6d6"/>
+
+<text x="229" y="262" text-anchor="middle" font-size="14" fill="#b7b5ac">IGNITER CONTROLLER</text>
+
+<g font-size="13" fill="#5F5E5A">
+<line x1="368" y1="151" x2="368" y2="350" stroke="#888780" stroke-width="1" marker-end="url(#lead)" stroke-dasharray="3 3"/>
+<text x="380" y="354">Green status LED — solid when paired, blinks on fire</text>
+<line x1="95" y1="219" x2="95" y2="378" stroke="#888780" stroke-width="1" marker-end="url(#lead)" stroke-dasharray="3 3"/>
+<text x="60" y="398">4 pairs of 4mm banana binding posts — red +, black &#8211;, fused 7.4V on fire</text>
+<line x1="500" y1="115" x2="500" y2="60" stroke="#888780" stroke-width="1" marker-end="url(#lead)" stroke-dasharray="3 3"/>
+<text x="500" y="50" text-anchor="middle">Hammond 1455N1601BK — black anodized aluminum, 160&#215;103&#215;53mm</text>
+</g>
+</svg>

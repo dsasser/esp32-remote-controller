@@ -2,7 +2,11 @@
 
 ![Schematic](images/schematic.svg)
 
-The full schematic SVG is in `docs/images/schematic.svg`. All components are modules, so this documents interconnection rather than component-level detail.
+The block-level schematic above (`docs/images/schematic.svg`) documents interconnection between the modules.
+
+For a net-level view an electronics engineer can build and debug from — proper symbols, pin names, power rails, decoupling, per-channel TVS and binding posts — see the component schematic:
+
+![Component schematic](images/schematic-detail.svg)
 
 ---
 
