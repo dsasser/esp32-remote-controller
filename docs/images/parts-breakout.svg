@@ -56,9 +56,9 @@
 <g><rect x="34" y="382" width="24" height="24" rx="3" fill="#0F6E56"/><path d="M42 384 v20 M50 384 v20" stroke="#9FE1CB" stroke-width="2.5"/></g>
 <rect x="78" y="366" width="24" height="17" rx="8" fill="#E1F5EE"/>
 <text x="90" y="378" text-anchor="middle" font-size="11" font-weight="600" fill="#04342C">F1</text>
-<text x="110" y="379" font-size="13.5" font-weight="600" fill="#1a1a1a">5A blade fuse + holder</text>
-<text x="78" y="402" font-size="11.5" fill="#555">In series with the 7.4V rail.</text>
-<text x="78" y="418" font-size="11.5" fill="#555">Rear-panel, swap without opening.</text>
+<text x="110" y="379" font-size="13.5" font-weight="600" fill="#1a1a1a">5A inline blade fuse</text>
+<text x="78" y="402" font-size="11.5" fill="#555">In series with the 7.4V rail. Inline</text>
+<text x="78" y="418" font-size="11.5" fill="#555">pigtail holder, mounted inside the box.</text>
 <rect x="342" y="352" width="318" height="84" rx="9" fill="#ffffff" stroke="#e2e0d8" stroke-width="1"/>
 <rect x="342" y="366" width="4" height="56" rx="2" fill="#0f6e56"/>
 <g><line x1="358" y1="394" x2="368" y2="394" stroke="#0F6E56" stroke-width="2"/><polygon points="368,386 368,402 382,394" fill="#0F6E56"/><line x1="382" y1="386" x2="382" y2="402" stroke="#085041" stroke-width="2.5"/><line x1="382" y1="394" x2="394" y2="394" stroke="#0F6E56" stroke-width="2"/></g>

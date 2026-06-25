@@ -85,8 +85,8 @@ For each channel:
 1. C1 (100µF) across the 5V rail near the ESP32
 2. C2-C5 (0.1µF) at each relay IN line
 3. R1 + D1 LED on GPIO2 out to the front panel (15cm lead)
-4. Mount binding posts, LED, fuse holder, barrel jack to panels
-5. Secure PCB, relay, and 2S pack inside
+4. Mount binding posts, LED, USB-C receptacle, barrel jack to panels
+5. Secure PCB, relay, 2S pack, and the inline fuse holder inside
 6. Dress wiring, close panels
 
 **Final test:**
