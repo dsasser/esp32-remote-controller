@@ -19,7 +19,8 @@ A portable, wireless 4-channel remote igniter controller for **hobby rocketry**.
 - One MT3608 boost (7.4V -> 5V) for ESP32 and relay logic
 - VNFOCKQSH optocoupler-isolated relay, mounted off-board
 - TVS diode protection per channel; inline 5A fuse on the 7.4V rail
-- 8.4V barrel-jack charging through the BMS
+- Master power switch (SW1) cuts battery+ to the whole device
+- 8.4V barrel-jack charging through the BMS (works with the switch off)
 - Hammond aluminum enclosure with custom SendCutSend panels
 - Socketed ESP32 and off-board relay — fully serviceable
 
@@ -58,7 +59,7 @@ remote-controller/
 │       └── rear-panel.svg         True-to-scale rear panel elevation
 ├── hardware/
 │   ├── front_panel.dxf        Binding posts + LED (2D, aluminum)
-│   ├── rear_panel.dxf         Charge jack + USB-C (2D, aluminum)
+│   ├── rear_panel.dxf         Power switch + charge jack + USB-C (2D, aluminum)
 │   ├── front_panel.step/.stl  3D-print solid (Fusion / slicer)
 │   ├── rear_panel.step/.stl   3D-print solid (Fusion / slicer)
 │   └── generate_panels.py     Parametric source (CadQuery → STEP/STL)
@@ -72,9 +73,9 @@ remote-controller/
 ## Architecture at a Glance
 
 ```
-[2S Pack 7.4V] -> [BMS] -+-> [5A fuse] -> relay COM x4 -> NO -> [TVS] -> posts -> igniters
-                         |
-                         +-> [MT3608 5V] -> ESP32-S3 + relay logic
+[2S Pack 7.4V] -> [BMS] -> [SW1] -+-> [5A fuse] -> relay COM x4 -> NO -> [TVS] -> posts -> igniters
+                                  |
+                                  +-> [MT3608 5V] -> ESP32-S3 + relay logic
                                                 |
                                           BLE <- phone
 ```

@@ -23,7 +23,7 @@ A portable 4-channel remote igniter controller for **hobby rocketry**. It fires 
 
 A single **2S Li-ion pack** (2× Samsung 30Q in series, 7.4V nominal) powers everything:
 
-- **Firing power:** Raw 7.4V routes through a 5A fuse directly to the relay COM terminals. When a relay fires, 7.4V appears across the binding posts and fires the igniter. Estes igniters need only 0.5-1A, so 7.4V is entirely sufficient.
+- **Firing power:** Raw 7.4V routes through the master switch (SW1) and a 5A fuse to the relay COM terminals. When a relay fires, 7.4V appears across the binding posts and fires the igniter. Estes igniters need only 0.5-1A, so 7.4V is entirely sufficient. With SW1 off, the COM bus and posts are dead.
 - **Logic power:** One MT3608 boost converter steps 7.4V up to a regulated 5.0V, powering both the ESP32-S3 and the relay module's coil/logic side.
 
 This single-battery design replaced an earlier, more complex dual-battery architecture. The simplification was possible because hobby igniters are forgiving, low-current loads.
@@ -34,11 +34,11 @@ This single-battery design replaced an earlier, more complex dual-battery archit
       v
 [ESP32-S3 Super Mini] --GPIO4-7 via 6-wire ribbon--> [VNFOCKQSH Relay (off-board)]
       ^                                                      |
-[MT3608 5V boost]                                      COM x4 <-- 7.4V (fused)
+[MT3608 5V boost]                                      COM x4 <-- 7.4V (switched, fused)
       ^                                                NO x4
-[2S Pack: 2x Samsung 30Q]                                   |
-[2S BMS] <-- 8.4V charger via DaierTek jack          [TVS D2-D5] + [Binding Posts]
-                                                            |
+[SW1 master power switch]                                   |
+      ^                                              [TVS D2-D5] + [Binding Posts]
+[2S Pack: 2x Samsung 30Q] -> [2S BMS] <-- 8.4V charger      |
                                                       [Igniters 1-4]
 ```
 
