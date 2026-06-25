@@ -28,12 +28,13 @@ CORNERS  = [(5,5),(98,5),(5,48),(98,48)]
 COL_X    = [18.5,40.5,62.5,84.5]
 ROW_POS, ROW_NEG = 36.5, 16.5
 LED_XY   = (94.0,26.5)
+SW_XY    = (22.0,26.5)
 CHARGE_XY= (52.0,26.5)
 USB_XY   = (87.0,26.5)
 
 # printed hole radii = nominal + PETG compensation
-# (M3 3.0->3.2, post 8.0->8.4, LED 5.0->5.2, barrel 12.0->12.4, USB M11 11.5->11.9)
-R_M3, R_POST, R_LED, R_BARREL, R_USB = 1.6, 4.2, 2.6, 6.2, 5.95
+# (M3 3.0->3.2, post 8.0->8.4, LED 5.0->5.2, switch/barrel 12.0->12.4, USB M11 11.5->11.9)
+R_M3, R_POST, R_LED, R_SW, R_BARREL, R_USB = 1.6, 4.2, 2.6, 6.2, 6.2, 5.95
 
 
 def base():
@@ -75,9 +76,9 @@ print(f"front_panel: {len(front_holes)} holes, labels={ok}")
 
 # ---- rear ------------------------------------------------------------------
 rear_holes  = [(cx, cy, R_M3) for cx, cy in CORNERS]
-rear_holes += [(CHARGE_XY[0], CHARGE_XY[1], R_BARREL), (USB_XY[0], USB_XY[1], R_USB)]
-rear_labels = [(CHARGE_XY[0], 36.0, 2.0, "CHARGE"), (USB_XY[0], 36.0, 2.0, "USB-C"),
-               (PW / 2, 4.0, 2.5, "IGNITER CONTROLLER")]
+rear_holes += [(SW_XY[0], SW_XY[1], R_SW), (CHARGE_XY[0], CHARGE_XY[1], R_BARREL), (USB_XY[0], USB_XY[1], R_USB)]
+rear_labels = [(SW_XY[0], 36.0, 2.0, "POWER"), (CHARGE_XY[0], 36.0, 2.0, "CHARGE"),
+               (USB_XY[0], 36.0, 2.0, "USB-C"), (PW / 2, 4.0, 2.5, "IGNITER CONTROLLER")]
 rear, ok = deboss(drill(base(), rear_holes), rear_labels)
 write(rear, "rear_panel")
 print(f"rear_panel: {len(rear_holes)} holes, labels={ok}")

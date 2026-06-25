@@ -19,11 +19,15 @@ A single 2S pack feeds two paths:
         |
    [2S BMS] <--- 8.4V charger (DaierTek barrel jack J1)
         |
+   [SW1 master power]  --lamp--> GND   (illuminated rocker, rear panel)
+        |
+   [F1 5A inline fuse]
+        |
    7.4V BUS ----+---------------------------+
         |       |                           |
-        |   [F1 5A fuse]              [MT3608 U1]
-        |       |                     7.4V -> 5.0V
-        |   relay COM x4                    |
+        |   relay COM x4              [MT3608 U1]
+        |                             7.4V -> 5.0V
+        |                                   |
         |                              5V BUS
         |                                   |
         |                          +--------+--------+
@@ -32,7 +36,10 @@ A single 2S pack feeds two paths:
    relay NO x4 --> [TVS D2-D5] --> [Binding posts] --> igniters
 ```
 
-GND is common across the whole system.
+GND is common across the whole system. **SW1 sits between the BMS and the
+7.4V bus**, so when it's off the ESP32, the boost, and the firing rail (relay
+COM and the binding posts) are all de-energized. The charger feeds the BMS
+*upstream* of SW1, so the pack still charges with the device switched off.
 
 ---
 
@@ -43,6 +50,7 @@ GND is common across the whole system.
 | B1 | 2S pack — 2x Samsung 30Q 18650 in series (7.4V) |
 | — | 2S Li-ion BMS protection board |
 | J1 | DaierTek 5.5x2.1mm barrel jack (charge port) |
+| SW1 | Master power rocker switch (illuminated, ∅12mm panel-mount) |
 | F1 | 5A blade fuse + inline holder (internal) |
 | U1 | MT3608 boost converter (7.4V -> 5.0V) |
 | U2 | ESP32-S3 Super Mini |
@@ -97,8 +105,11 @@ Before connecting the ESP32 or relay, power the MT3608 from the pack and adjust 
 ### TVS orientation
 P6KE15A is unidirectional. The **cathode (stripe end)** faces the positive binding post. Reversed orientation shorts the output.
 
+### Master switch (SW1) & lamp
+SW1 carries the full battery+ current (logic plus firing — a few amps peak), so use a switch rated comfortably above that; the linked rocker is rated well beyond. Wire the two contact leads in series with battery+ (BMS out → SW1 → F1). The two lamp leads are a separate illuminated indicator: lamp+ to the switched 7.4V (downstream of SW1), lamp− to GND, so it glows when the device is on. **If the lamp is rated 12V it will be dim or dark at 7.4V** — the switching itself is unaffected; for a bright indicator either source the lamp from a 12V supply or rely on the front status LED.
+
 ### Wire gauge
-- 18 AWG for all 7.4V power (battery, fuse, COM, output)
+- 18 AWG for all 7.4V power (battery, switch, fuse, COM, output)
 - 22 AWG for 5V logic and GPIO ribbon
 
 ---

@@ -2,7 +2,7 @@
 <title>Parts breakout — every component of the 4-channel remote ignitor</title>
 <desc>Card grid of all components grouped by function: logic and control, power and charging, switching and protection, output, and board and structure.</desc>
 <text x="12" y="26" font-size="17" font-weight="600" fill="#1a1a1a">Parts breakout</text>
-<text x="12" y="44" font-size="12" fill="#888">Every component, grouped by function — reference designator, part, and role</text>
+<text x="12" y="44" font-size="12" fill="#888">Core components, grouped by function — see the BOM for the full list (incl. SW1, J2)</text>
 <rect x="12" y="58" width="318" height="84" rx="9" fill="#ffffff" stroke="#e2e0d8" stroke-width="1"/>
 <rect x="12" y="72" width="4" height="56" rx="2" fill="#534ab7"/>
 <g><rect x="32" y="86" width="28" height="30" rx="2" fill="#26215C"/><rect x="38" y="82" width="16" height="6" rx="1" fill="#3C3489"/><g fill="#AFA9EC"><rect x="34" y="92" width="4" height="2"/><rect x="34" y="98" width="4" height="2"/><rect x="34" y="104" width="4" height="2"/><rect x="54" y="92" width="4" height="2"/><rect x="54" y="98" width="4" height="2"/><rect x="54" y="104" width="4" height="2"/></g><circle cx="50" cy="106" r="2.5" fill="#9FE1CB"/></g>

@@ -27,10 +27,13 @@ The DXFs in `/hardware` are the **corrected revision**:
 | Front: ∅5mm hole | 5mm | Status LED — moved to the right edge, vertically centered |
 | Rear: ∅12mm round hole | 12mm | DaierTek barrel jack — unchanged, correct size |
 | Rear: ~~20×13mm fuse slot~~ | — | **Removed.** Inline fuse holder now lives inside the enclosure |
+| Rear: ∅12mm round hole | 12mm | **Master power switch (SW1)** restored — see note below |
 | Rear: USB-C cutout | **∅11.5mm round** | M11×1.0 threaded panel-mount USB-C, nut-clamped (was 9×3.5mm) |
 | Both: 4× ∅3mm corner holes | 3mm | M3 panel mounting — unchanged |
 
 > The rear USB-C receptacle preserves wired firmware flashing and serial debug access to the ESP32-S3 Super Mini. It's an **M11×1.0 threaded mount**: the barrel passes through the ∅11.5mm hole and a hex nut clamps from behind, so it seats solidly in panels of any thickness. Its 4-wire pigtail plugs into the ESP's USB pads internally.
+
+> **Master power switch (SW1) restored.** The original design had a panel master switch, but it was lost when the design consolidated to 2S — its rear slot was relabeled as the fuse cutout and then removed. It's back as a **∅12mm round hole at X=22mm**, giving a symmetric POWER / CHARGE / USB-C layout. A master cutoff is *more* important in the 2S design: the pack feeds the boost continuously, so without it the ESP32 is always drawing current, and switching it off de-energizes the firing rail (the binding posts go dead). See [03-schematic.md](03-schematic.md).
 
 > The 5A fuse is now an **inline holder wired into the battery+ lead inside the box** (see [02-bom.md](02-bom.md)). The rear panel carries no fuse cutout. To restore panel-accessible fuse swaps, switch to a round-bezel panel-mount holder and add a ∅12mm hole to `rear_panel.dxf`.
 
@@ -44,7 +47,7 @@ These elevations are generated directly from the `/hardware` DXF coordinates, so
 
 ![Front panel elevation](images/front-panel.svg)
 
-**Rear panel** — charge jack, USB-C cutout, 4× M3 corner holes (no fuse slot):
+**Rear panel** — power switch, charge jack, USB-C cutout, 4× M3 corner holes (no fuse slot):
 
 ![Rear panel elevation](images/rear-panel.svg)
 
@@ -68,6 +71,7 @@ Column pitch: 22mm. Row spacing (+ to –): 20mm. Minimum nut clearance: 20mm ce
 
 | Feature | Hole | X position |
 |---------|------|-----------|
+| Power switch SW1 | ∅12mm | 22mm |
 | Charge jack J1 | ∅12mm | 52mm |
 | USB-C (J2, flashing) | ∅11.5mm round (M11 threaded mount) | 87mm |
 
@@ -99,7 +103,7 @@ The STEP/STL solids default to a **2mm** panel. Pick thickness by how the panel 
 - **~1.5mm** to slide into the Hammond extrusion's grooves (matches the stock aluminum panel).
 - **2–3mm** for a stiffer panel bolted on through the four M3 corner holes.
 
-> Every panel-mount part here clamps with a nut or threaded body — binding posts, barrel jack, and the **M11×1.0 threaded USB-C** (J2). They all seat in any printed thickness, so there's no thin-wall snap-fit to design around. The USB-C thread is ~14.5mm long, plenty for a 2–3mm panel.
+> Every panel-mount part here clamps with a nut or threaded body — binding posts, the rocker switch (SW1), barrel jack, and the **M11×1.0 threaded USB-C** (J2). They all seat in any printed thickness, so there's no thin-wall snap-fit to design around. The USB-C thread is ~14.5mm long, plenty for a 2–3mm panel.
 
 ### Hole tolerances
 
@@ -110,7 +114,7 @@ Baked into the STEP/STL solids for black PETG on a 0.4mm nozzle. If your printer
 | M3 corner hole | ∅3.0mm | ∅3.2mm |
 | Binding post | ∅8.0mm | ∅8.4mm |
 | Status LED | ∅5.0mm | ∅5.2mm |
-| Barrel jack | ∅12.0mm | ∅12.4mm |
+| Power switch / barrel jack | ∅12.0mm | ∅12.4mm |
 | USB-C (M11 thread) | ∅11.5mm | ∅11.9mm |
 
 ### Print settings

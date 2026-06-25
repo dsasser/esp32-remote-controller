@@ -37,8 +37,11 @@
 
 | Ref | Component | Spec | Sourcing | Est. Price | Qty |
 |-----|-----------|------|----------|----------|-----|
+| SW1 | Master power switch | SPST illuminated rocker, 4-wire (2 contact + 2 lamp), **∅12mm round panel-mount** | Amazon — "12mm round rocker switch illuminated" | ~$8 (multi) | 1 |
 | F1 | Inline blade fuse holder | 5A blade fuse, **inline holder with wire pigtails** (ATC/ATO) | Amazon — "inline blade fuse holder 12AWG" | ~$8 | 1 |
 | D2–D5 | TVS diodes | P6KE15A, 600W 15V unidirectional, DO-15 axial | Amazon — "P6KE15A TVS diode" | ~$8 (20-pack) | 4 |
+
+> **Master switch (SW1):** A ∅12mm illuminated rocker on the rear panel cuts battery+ between the BMS and the fuse, so the whole device — ESP32, boost, and the firing rail — powers down with one switch. The charger feeds the BMS upstream of SW1, so the pack still charges when off. Its lamp leads are separate (4-wire); note an illuminated rocker rated for 12V will glow dim or not at all on the 7.4V rail — see [03-schematic.md](03-schematic.md).
 
 > **Fuse:** A 5A blade fuse protects the 7.4V rail. It lives on an **inline holder wired into the battery+ lead inside the enclosure** — the holder the project actually uses is an inline pigtail type and cannot be panel-mounted, so the rear panel no longer carries a fuse cutout. To swap the fuse, open the enclosure (or pop the rear panel). If panel-accessible fuse swaps are desired later, switch to a true round-bezel panel-mount holder and add a ∅12mm hole to the rear DXF.
 
@@ -88,11 +91,11 @@
 |----------|-----------|
 | Core modules (ESP32-S3, relay, MT3608, USB-C pigtail) | ~$30 |
 | Battery & power (cells, BMS, charger, jack, holder) | ~$46 |
-| Switching & protection (fuse, TVS) | ~$16 |
+| Switching & protection (switch, fuse, TVS) | ~$24 |
 | Output connectors | ~$10 |
 | PCB & passives | ~$20 |
 | Enclosure | ~$33 |
-| **Total** | **~$155** |
+| **Total** | **~$163** |
 
 *ElectroCookie PCB and custom panels using existing/already-fabricated stock.*
 
