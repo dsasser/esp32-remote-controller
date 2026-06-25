@@ -43,7 +43,7 @@ GND is common across the whole system.
 | B1 | 2S pack — 2x Samsung 30Q 18650 in series (7.4V) |
 | — | 2S Li-ion BMS protection board |
 | J1 | DaierTek 5.5x2.1mm barrel jack (charge port) |
-| F1 | 5A blade fuse + panel-mount holder |
+| F1 | 5A blade fuse + inline holder (internal) |
 | U1 | MT3608 boost converter (7.4V -> 5.0V) |
 | U2 | ESP32-S3 Super Mini |
 | K1 | VNFOCKQSH 4-channel relay module (off-board) |

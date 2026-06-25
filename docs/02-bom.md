@@ -11,6 +11,7 @@
 | U2 | ESP32-S3 Super Mini | BLE 5.0, WiFi, USB-C, compact | Amazon — "ESP32-S3 Super Mini" | ~$8 | 1 |
 | K1 | VNFOCKQSH 4-channel relay module | 5V, optocoupler isolated, H/L trigger jumper, 10A contacts | Amazon — "VNFOCKQSH 4 channel relay 5V" | ~$8 | 1 |
 | U1 | MT3608 boost converter | Adjustable, 7.4V → 5.0V, 2A | Amazon — "MT3608 boost converter" | ~$8 (multi-pack) | 1 |
+| J2 | Panel-mount USB-C pigtail | Female USB-C, **M11×1.0 threaded + hex nut** (∅13.8mm flange, **∅11mm round panel hole**, ~14.5mm thread clamps any panel thickness), 4-wire pigtail to ESP USB | Amazon — "M11 threaded panel mount USB-C" | ~$6 | 1 |
 
 ---
 
@@ -36,10 +37,10 @@
 
 | Ref | Component | Spec | Sourcing | Est. Price | Qty |
 |-----|-----------|------|----------|----------|-----|
-| F1 | Blade fuse + holder | 5A blade fuse, panel-mount holder (20x13mm cutout) | Amazon — "panel mount blade fuse holder" | ~$8 | 1 |
+| F1 | Inline blade fuse holder | 5A blade fuse, **inline holder with wire pigtails** (ATC/ATO) | Amazon — "inline blade fuse holder 12AWG" | ~$8 | 1 |
 | D2–D5 | TVS diodes | P6KE15A, 600W 15V unidirectional, DO-15 axial | Amazon — "P6KE15A TVS diode" | ~$8 (20-pack) | 4 |
 
-> **Fuse:** A 5A blade fuse protects the 7.4V rail. Mounted in a panel-accessible holder on the rear panel for easy replacement without opening the enclosure.
+> **Fuse:** A 5A blade fuse protects the 7.4V rail. It lives on an **inline holder wired into the battery+ lead inside the enclosure** — the holder the project actually uses is an inline pigtail type and cannot be panel-mounted, so the rear panel no longer carries a fuse cutout. To swap the fuse, open the enclosure (or pop the rear panel). If panel-accessible fuse swaps are desired later, switch to a true round-bezel panel-mount holder and add a ∅12mm hole to the rear DXF.
 
 ---
 
@@ -50,6 +51,8 @@
 | BT1–BT4 | Banana binding post pairs | 4mm panel-mount, red + black | Amazon — "Glarks banana binding post" | ~$10 (multi) | 8 posts |
 
 > Hobby igniters connect via alligator clip leads that clip directly onto the banana posts. Convention: red = positive, black = negative per channel.
+
+> **Post spacing:** The first front panel cut spaced the two posts of a pair only 10mm apart and their mounting nuts collided. The revised DXF lays the 8 posts out as a **2-row grid** — four channel columns at 22mm pitch, red (+) on the top row and black (–) on the bottom row 20mm below — so no two nuts are closer than 20mm center-to-center. Verify against your posts' actual nut/washer OD before re-ordering; widen the rows if your hardware is larger than ~14mm across.
 
 ---
 
@@ -73,9 +76,9 @@
 | Ref | Component | Spec | Sourcing | Est. Price |
 |-----|-----------|------|----------|------------|
 | ENC | Hammond 1455N1601BK | 160x103x53mm, black anodized aluminum, IP54 | Amazon B005S3MICW | ~$33 |
-| — | Custom panels | Front + rear, SendCutSend (already fabricated) | DXF in `/hardware` | — |
+| — | Custom panels | Front + rear, SendCutSend (DXF revised after first cut) | DXF in `/hardware` | — |
 
-> Front and rear aluminum panels were cut by SendCutSend using the DXF files in `/hardware`. Both panels are confirmed compatible with the 2S design — see [05-enclosure.md](05-enclosure.md).
+> Front and rear aluminum panels are cut by SendCutSend using the DXF files in `/hardware`. The **first fabrication revealed three fit problems** — colliding binding-post nuts, a fuse slot for a holder that can't be panel-mounted, and a USB-C opening sized for a bare plug. The DXFs in `/hardware` are the **corrected revision**; see [05-enclosure.md](05-enclosure.md) for details.
 
 ---
 
@@ -83,13 +86,13 @@
 
 | Category | Est. Cost |
 |----------|-----------|
-| Core modules (ESP32-S3, relay, MT3608) | ~$24 |
+| Core modules (ESP32-S3, relay, MT3608, USB-C pigtail) | ~$30 |
 | Battery & power (cells, BMS, charger, jack, holder) | ~$46 |
 | Switching & protection (fuse, TVS) | ~$16 |
 | Output connectors | ~$10 |
 | PCB & passives | ~$20 |
 | Enclosure | ~$33 |
-| **Total** | **~$149** |
+| **Total** | **~$155** |
 
 *ElectroCookie PCB and custom panels using existing/already-fabricated stock.*
 

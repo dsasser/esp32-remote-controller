@@ -14,7 +14,7 @@ A portable 4-channel remote igniter controller for **hobby rocketry**. It fires 
 | Wireless control | ESP32-S3 BLE 5.0, ~30-100ft range |
 | Safe firing | Relays default open, optocoupler isolation, TVS protection |
 | Simple | One battery, one boost converter, minimal parts |
-| Serviceable | Socketed ESP32, off-board relay, panel-accessible fuse |
+| Serviceable | Socketed ESP32, off-board relay, replaceable inline fuse |
 | Professional finish | Hammond aluminum enclosure, SendCutSend panels |
 
 ---

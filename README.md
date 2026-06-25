@@ -18,7 +18,7 @@ A portable, wireless 4-channel remote igniter controller for **hobby rocketry**.
 - Single 2S pack: 2x Samsung 30Q 18650 + 2S BMS
 - One MT3608 boost (7.4V -> 5V) for ESP32 and relay logic
 - VNFOCKQSH optocoupler-isolated relay, mounted off-board
-- TVS diode protection per channel; panel-accessible 5A fuse
+- TVS diode protection per channel; inline 5A fuse on the 7.4V rail
 - 8.4V barrel-jack charging through the BMS
 - Hammond aluminum enclosure with custom SendCutSend panels
 - Socketed ESP32 and off-board relay — fully serviceable
@@ -57,8 +57,11 @@ remote-controller/
 │       ├── front-panel.svg        True-to-scale front panel elevation
 │       └── rear-panel.svg         True-to-scale rear panel elevation
 ├── hardware/
-│   ├── front_panel.dxf        Binding posts + LED
-│   └── rear_panel.dxf         Fuse + charge jack + USB-C
+│   ├── front_panel.dxf        Binding posts + LED (2D, aluminum)
+│   ├── rear_panel.dxf         Charge jack + USB-C (2D, aluminum)
+│   ├── front_panel.step/.stl  3D-print solid (Fusion / slicer)
+│   ├── rear_panel.step/.stl   3D-print solid (Fusion / slicer)
+│   └── generate_panels.py     Parametric source (CadQuery → STEP/STL)
 └── firmware/
     └── remote_controller/
         └── remote_controller.ino
