@@ -1,66 +1,67 @@
 # 04 — PCB Layout
 
-## Medium ElectroCookie — Three-Zone Layout
+The build uses a **black ElectroCookie solderable breadboard**. The medium (~80×60mm, 30-column) board is enough — the layout below uses only ~22 of its 30 columns — but a larger ElectroCookie also fits the enclosure if you want more elbow room. The relay module mounts **off-board** on the enclosure floor, so the PCB only carries the ESP32, boost, decoupling, the TVS/output section, and the screw terminals.
 
-The build uses a **medium black ElectroCookie board (~80x60mm)**. The relay module mounts separately on the enclosure floor, keeping the board compact. Components organize into three left-to-right zones.
-
-```
-+--------------------------------------------------------------+
-|  POWER IN (left)   |   LOGIC (center)      |  OUTPUT (right) |
-|                    |                       |                 |
-|  [BATT IN screw]   |  [ESP32-S3 on         |  [TVS D2]       |
-|  [FUSE screw]      |   female headers]     |  [TVS D3]       |
-|  [BARREL screw]    |                       |  [TVS D4]       |
-|  [RELAY SIG screw] |  [MT3608 boost]       |  [TVS D5]       |
-|  (6-wire ribbon)   |  [status LED tap]     |  [OUTPUT screw  |
-|                    |                       |   terminals]    |
-+--------------------------------------------------------------+
-            GND rail / 7.4V rail run along board edges
-```
+![PCB placement on the breadboard nodes](images/pcb-placement.svg)
 
 ---
 
-## Zone Detail
+## Work with the copper, not against it
 
-### Left Zone — Power & External Connections
-All screw terminals for things that leave the board:
-- **BATT IN** — 7.4V from the 2S BMS (P+/P-)
-- **FUSE** — out to / back from the panel-mount 5A blade fuse
-- **BARREL** — charge jack connection (to BMS charge input)
-- **RELAY SIGNAL** — 6-wire ribbon terminals (GND, 5V, IN1-4) to the off-board relay
+The ElectroCookie is a 1:1 breadboard replica, so component placement follows breadboard rules — it is **not** free-form:
 
-### Center Zone — Logic
-- **ESP32-S3 Super Mini** on two rows of female 2.54mm headers (the Super Mini is narrow — use 8-pin rows). Socketed so it lifts out.
-- **MT3608 boost** — mount first, adjust to 5.0V before anything else is connected.
-- Status LED tap point — GPIO2 through R1 out to a flying lead to the panel LED.
+- **Node strips:** the main field is two banks split by a **center gap**. Each vertical group of **5 holes is one electrical node** (one trace). Adjacent groups are isolated.
+- **Power rails:** continuous bus strips run along the two **long edges**. Dedicate one rail to **+5V** and the other to **GND**. (If your board has a second rail per side, give the spare to **+7.4V** and skip the jumper below.)
 
-### Right Zone — Output
-- **TVS diodes D2-D5** on the output side of the relay NO contacts, cathode toward the positive output.
-- **Output screw terminals** to the four binding post pairs.
+The consequence: parts with two rows of pins (the ESP32-S3, and most MT3608 modules) **straddle the center gap**, so each pin lands on its own 5-hole node with four free holes for jumpers — exactly like seating a DIP on a breadboard.
 
 ---
 
-## Assembly Notes
+## Placement
 
-1. The ESP32-S3 Super Mini is narrow — use two rows of 8-pin female headers.
-2. Mount the MT3608 first and adjust it to 5.0V with a multimeter before connecting anything else. The pot is sensitive.
-3. The relay module mounts separately on the Hammond's internal floor via M3 screws through its corner holes. Run a 6-wire ribbon (GND, 5V, IN1, IN2, IN3, IN4) from the relay signal terminals on the PCB to the relay board.
-4. TVS diodes go on the output side of the relay NO contacts — between the relay and the binding posts. Cathode toward the positive output.
-5. The LED lead needs to reach the front panel hole — solder a ~15cm wire extension with heat shrink on the joints.
-6. Keep 7.4V power traces (battery, fuse, output) on one side of the board and 5V/signal on the other where possible, for noise isolation.
-7. Use 18 AWG wire for all 7.4V power connections. 22 AWG is fine for 5V logic and GPIO signals.
+### Power rails (long edges)
+- Top edge → **+5V** bus. Bottom edge → **GND** bus.
+- Jumper each part's 5V and GND pins straight to the nearest rail.
+- **7.4V** has no dedicated rail on a 2-rail board: bring it in on a screw terminal and jumper it to the MT3608 input and the relay-COM feed. (Or use a 3rd/4th rail if your board has one.)
+
+### MT3608 boost — input end, straddling the gap
+- Each pad on its own node. **IN+** from the 7.4V terminal, **IN−/OUT−** to the GND rail, **OUT+** jumpered to the +5V rail.
+- **Mount and trim to 5.00V before anything else is connected.** The pot is sensitive.
+
+### ESP32-S3 Super Mini — center, straddling the gap
+- On two rows of **8-pin female 2.54mm headers** (the Super Mini is narrow). Socketed so it lifts out.
+- 5V pin → +5V rail; GND → GND rail.
+- **GPIO4–7** jumper to the relay-signal screw terminal (the 6-wire ribbon). **GPIO2 → R1 →** a ~15cm flying lead to the panel status LED.
+
+### TVS + outputs — output end
+- Per channel: the **relay NO** wire lands on a node; a **TVS diode (D2–D5)** bridges that node to the **GND rail**, cathode (stripe) toward the **+** output; an output screw terminal taps the same node out to the binding post **+**. Each post **−** returns to the GND rail.
+
+### Decoupling
+- **C1** (100µF) across +5V↔GND near the ESP32. **C2–C5** (0.1µF) at the relay IN terminals.
 
 ---
 
-## Internal Mounting
+## Wire gauge
+
+| Run | Gauge |
+|-----|-------|
+| 7.4V firing path (battery, fuse, SW1, relay COM, NO → posts) | **18 AWG** |
+| 6-wire ribbon to the relay (GND, 5V, IN1–IN4) | 18–22 AWG (logic/signal only, <0.4A) |
+| 5V / GPIO logic, status-LED lead | 22–26 AWG |
+
+Keep the 7.4V runs on one side of the board and 5V/signal on the other where you can, for noise isolation.
+
+---
+
+## Internal mounting
 
 ```
-Hammond 1455N1601BK floor:
-  - ElectroCookie PCB on M3 standoffs (or enclosure rails)
-  - VNFOCKQSH relay module bolted flat to floor (M3)
-  - 2S 18650 pack secured with hook-and-loop strap
-  - Panel-mount fuse holder and barrel jack on rear panel
-  - Binding posts and LED on front panel
+Hammond 1455N1601BK floor (single layer, ~20mm-tall parts, ~25mm headroom):
+  - ElectroCookie PCB on M3 standoffs (front)
+  - VNFOCKQSH relay module bolted flat to the floor, M3 (rear)
+  - 2S 18650 pack lying down, hook-and-loop strap
+  - 2S BMS + inline 5A fuse tucked beside the battery
+  - SW1, barrel jack, USB-C on the rear panel; binding posts + LED on the front
 ```
 
-The off-board relay and single battery pack leave plenty of room inside the enclosure. The 6-wire ribbon gives enough slack to lift the PCB out for servicing without disconnecting the relay.
+See [07-assembly.md](07-assembly.md) for the top-down layout and side-view height drawings. The off-board relay and single battery leave plenty of room; the 6-wire ribbon has enough slack to lift the PCB out without unplugging the relay.

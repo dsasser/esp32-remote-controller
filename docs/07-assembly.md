@@ -4,6 +4,20 @@ Build in stages. Test each before moving on.
 
 ---
 
+## Internal Layout
+
+Where everything goes inside the Hammond enclosure — board placement, the 2S pack, the 6-wire ribbon, connectors, and wire gauges:
+
+![Top-down internal layout](images/internal-layout.svg)
+
+Heights and lid clearance (everything sits in one layer):
+
+![Side view — heights and clearance](images/internal-side.svg)
+
+For component placement *on the PCB itself* (breadboard nodes, rails, where the ESP32/MT3608/TVS sit), see [04-pcb-layout.md](04-pcb-layout.md).
+
+---
+
 ## Stage 1 — Battery Pack & BMS
 
 1. Assemble the 2S pack: 2x Samsung 30Q in series in the holder (or series-wire two single holders)
@@ -37,8 +51,8 @@ Build in stages. Test each before moving on.
 
 ## Stage 4 — ESP32-S3 First Boot
 
-1. Solder female headers to the ElectroCookie center zone; plug in the ESP32-S3
-2. Wire MT3608 5V -> board 5V rail, GND -> GND rail
+1. Solder two 8-pin female header rows straddling the ElectroCookie center gap; plug in the ESP32-S3
+2. Wire MT3608 5V -> +5V edge rail, GND -> GND edge rail
 3. Flash a blink sketch over USB-C to confirm the toolchain
 4. Flash the main firmware from `/firmware/remote_controller/`
 5. Confirm `RemoteBox` appears in a BLE scan (nRF Connect)
@@ -59,13 +73,14 @@ Build in stages. Test each before moving on.
 
 ---
 
-## Stage 6 — Firing Power
+## Stage 6 — Master Switch, Fuse & Firing Power
 
-1. Wire the 5A blade fuse holder in series with BMS 7.4V output
-2. Fused 7.4V -> relay COM x4 (parallel to the bus)
-3. Measure: 7.4V at COM, 5V rail unchanged
+1. Wire **SW1** (rear-panel master switch) in the battery+ line: BMS P+ → SW1 → inline 5A fuse
+2. Fused, switched 7.4V -> relay COM x4 (parallel to the bus)
+3. Lamp leads of SW1: to the switched 7.4V and GND (illuminated rocker; dim at 7.4V if it's a 12V lamp)
+4. Measure: 7.4V at COM with SW1 on, **0V at COM with SW1 off**, 5V rail unchanged
 
-**Test:** Both rails present, no interference.
+**Test:** Switch cuts COM power; both rails present when on, no interference.
 
 ---
 
@@ -85,7 +100,7 @@ For each channel:
 1. C1 (100µF) across the 5V rail near the ESP32
 2. C2-C5 (0.1µF) at each relay IN line
 3. R1 + D1 LED on GPIO2 out to the front panel (15cm lead)
-4. Mount binding posts, LED, USB-C receptacle, barrel jack to panels
+4. Mount binding posts, LED, SW1, USB-C receptacle, barrel jack to panels
 5. Secure PCB, relay, 2S pack, and the inline fuse holder inside
 6. Dress wiring, close panels
 
@@ -99,7 +114,7 @@ For each channel:
 
 ## Safety Checklist (igniters)
 
-- [ ] 5A fuse installed
+- [ ] 5A fuse installed; SW1 cuts COM power when off
 - [ ] JD-VCC jumper removed; H/L trigger matches firmware
 - [ ] MT3608 verified at 5.00V
 - [ ] TVS cathode to + post on every channel

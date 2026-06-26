@@ -90,6 +90,8 @@ remote-controller/
 | [Parts breakout](docs/images/parts-breakout.svg) | Every component, grouped by function |
 | [Component schematic](docs/images/schematic-detail.svg) | Net-level schematic for build / debug |
 | [Front panel](docs/images/front-panel.svg) · [Rear panel](docs/images/rear-panel.svg) | True-to-scale elevations generated from the `/hardware` DXFs |
+| [Internal layout](docs/images/internal-layout.svg) · [Side view](docs/images/internal-side.svg) | Top-down placement + connections, and heights/clearance |
+| [PCB placement](docs/images/pcb-placement.svg) | Component placement on the ElectroCookie breadboard nodes |
 
 ---
 
