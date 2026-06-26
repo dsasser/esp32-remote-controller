@@ -25,7 +25,7 @@ A single 2S pack feeds two paths:
         |
    7.4V BUS ----+---------------------------+
         |       |                           |
-        |   relay COM x4              [MT3608 U1]
+        |   relay COM x4              [MP1584EN U1]
         |                             7.4V -> 5.0V
         |                                   |
         |                              5V BUS
@@ -37,7 +37,7 @@ A single 2S pack feeds two paths:
 ```
 
 GND is common across the whole system. **SW1 sits between the BMS and the
-7.4V bus**, so when it's off the ESP32, the boost, and the firing rail (relay
+7.4V bus**, so when it's off the ESP32, the buck, and the firing rail (relay
 COM and the binding posts) are all de-energized. The charger feeds the BMS
 *upstream* of SW1, so the pack still charges with the device switched off.
 
@@ -52,7 +52,7 @@ COM and the binding posts) are all de-energized. The charger feeds the BMS
 | J1 | DaierTek 5.5x2.1mm barrel jack (charge port) |
 | SW1 | Master power rocker switch (illuminated, ∅12mm panel-mount) |
 | F1 | 5A blade fuse + inline holder (internal) |
-| U1 | MT3608 boost converter (7.4V -> 5.0V) |
+| U1 | MP1584EN buck converter (7.4V -> 5.0V) |
 | U2 | ESP32-S3 Super Mini |
 | K1 | VNFOCKQSH 4-channel relay module (off-board) |
 | D1 | 5mm green LED (status) |
@@ -95,8 +95,8 @@ Relay COM terminals connect to the fused 7.4V bus. Relay NO terminals go to the 
 
 ## Critical Notes
 
-### MT3608 pre-adjustment
-Before connecting the ESP32 or relay, power the MT3608 from the pack and adjust its trimmer pot until the output reads **5.00V ± 0.05V**. The pot is sensitive — use a small flat screwdriver and turn slowly. Over-voltage damages the ESP32-S3.
+### MP1584EN pre-adjustment
+Before connecting the ESP32 or relay, power the MP1584EN from the pack and adjust its trimmer pot until the output reads **5.00V ± 0.05V**. The pot is sensitive — use a small flat screwdriver and turn slowly. Over-voltage damages the ESP32-S3.
 
 ### Relay jumpers
 - **JD-VCC jumper: removed.** The optocouplers already isolate the ESP32 GPIOs; output isolation is handled by the relay contacts.

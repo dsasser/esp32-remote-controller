@@ -26,7 +26,7 @@
 <text x="90" y="182" text-anchor="middle" font-size="11" font-weight="600" fill="#633806">B1</text>
 <text x="110" y="183" font-size="13.5" font-weight="600" fill="#1a1a1a">2S pack — 2x Samsung 30Q</text>
 <text x="78" y="206" font-size="11.5" fill="#555">Two 18650 in series, 7.4V ~3000mAh.</text>
-<text x="78" y="222" font-size="11.5" fill="#555">Fires igniters and feeds the boost.</text>
+<text x="78" y="222" font-size="11.5" fill="#555">Fires igniters and feeds the buck.</text>
 <rect x="342" y="156" width="318" height="84" rx="9" fill="#ffffff" stroke="#e2e0d8" stroke-width="1"/>
 <rect x="342" y="170" width="4" height="56" rx="2" fill="#BA7517"/>
 <g><rect x="360" y="188" width="32" height="20" rx="2" fill="#633806"/><rect x="364" y="192" width="24" height="4" rx="1" fill="#BA7517"/><circle cx="368" cy="203" r="2" fill="#FAC775"/><circle cx="376" cy="203" r="2" fill="#FAC775"/><circle cx="384" cy="203" r="2" fill="#FAC775"/></g>
@@ -40,8 +40,8 @@
 <g><rect x="28" y="286" width="36" height="20" rx="2" fill="#854F0B"/><rect x="32" y="290" width="12" height="12" rx="1" fill="#412402"/><circle cx="54" cy="296" r="5" fill="#EF9F27"/><path d="M54 293 v6 M51 296 h6" stroke="#412402" stroke-width="1.3"/></g>
 <rect x="78" y="268" width="24" height="17" rx="8" fill="#FAEEDA"/>
 <text x="90" y="280" text-anchor="middle" font-size="11" font-weight="600" fill="#633806">U1</text>
-<text x="110" y="281" font-size="13.5" font-weight="600" fill="#1a1a1a">MT3608 boost converter</text>
-<text x="78" y="304" font-size="11.5" fill="#555">Steps 7.4V up to a trimmed 5.00V</text>
+<text x="110" y="281" font-size="13.5" font-weight="600" fill="#1a1a1a">MP1584EN buck converter</text>
+<text x="78" y="304" font-size="11.5" fill="#555">Steps 7.4V down to a trimmed 5.00V</text>
 <text x="78" y="320" font-size="11.5" fill="#555">logic rail for ESP32 + relay coil.</text>
 <rect x="342" y="254" width="318" height="84" rx="9" fill="#ffffff" stroke="#e2e0d8" stroke-width="1"/>
 <rect x="342" y="268" width="4" height="56" rx="2" fill="#BA7517"/>

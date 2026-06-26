@@ -13,7 +13,7 @@ A portable 4-channel remote igniter controller for **hobby rocketry**. It fires 
 | Portable and self-contained | Single internal 2S battery, no external power |
 | Wireless control | ESP32-S3 BLE 5.0, ~30-100ft range |
 | Safe firing | Relays default open, optocoupler isolation, TVS protection |
-| Simple | One battery, one boost converter, minimal parts |
+| Simple | One battery, one buck converter, minimal parts |
 | Serviceable | Socketed ESP32, off-board relay, replaceable inline fuse |
 | Professional finish | Hammond aluminum enclosure, SendCutSend panels |
 
@@ -24,7 +24,7 @@ A portable 4-channel remote igniter controller for **hobby rocketry**. It fires 
 A single **2S Li-ion pack** (2× Samsung 30Q in series, 7.4V nominal) powers everything:
 
 - **Firing power:** Raw 7.4V routes through the master switch (SW1) and a 5A fuse to the relay COM terminals. When a relay fires, 7.4V appears across the binding posts and fires the igniter. Estes igniters need only 0.5-1A, so 7.4V is entirely sufficient. With SW1 off, the COM bus and posts are dead.
-- **Logic power:** One MT3608 boost converter steps 7.4V up to a regulated 5.0V, powering both the ESP32-S3 and the relay module's coil/logic side.
+- **Logic power:** One MP1584EN buck converter steps 7.4V down to a regulated 5.0V, powering both the ESP32-S3 and the relay module's coil/logic side.
 
 This single-battery design replaced an earlier, more complex dual-battery architecture. The simplification was possible because hobby igniters are forgiving, low-current loads.
 
@@ -34,7 +34,7 @@ This single-battery design replaced an earlier, more complex dual-battery archit
       v
 [ESP32-S3 Super Mini] --GPIO4-7 via 6-wire ribbon--> [VNFOCKQSH Relay (off-board)]
       ^                                                      |
-[MT3608 5V boost]                                      COM x4 <-- 7.4V (switched, fused)
+[MP1584EN 5V buck]                                      COM x4 <-- 7.4V (switched, fused)
       ^                                                NO x4
 [SW1 master power switch]                                   |
       ^                                              [TVS D2-D5] + [Binding Posts]
@@ -47,7 +47,7 @@ This single-battery design replaced an earlier, more complex dual-battery archit
 ## Key Design Decisions
 
 **Why 2S 18650 instead of a 12V pack?**
-Estes igniters fire at 0.5-1A. The raw 7.4V from two series cells drives them directly — no need for a 12V switching supply or a separate logic battery. Two cells, one BMS, one boost converter. Lighter and simpler.
+Estes igniters fire at 0.5-1A. The raw 7.4V from two series cells drives them directly — no need for a 12V switching supply or a separate logic battery. Two cells, one BMS, one buck converter. Lighter and simpler.
 
 **Why the VNFOCKQSH relay module?**
 Cheaper and faster-shipping than the original pick, with optocoupler isolation and a selectable H/L trigger jumper. The optocouplers protect the ESP32 GPIOs; the relay contacts handle output isolation. The JD-VCC jumper is removed.

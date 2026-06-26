@@ -17,7 +17,7 @@
   <line x1="24" y1="60" x2="48" y2="60" stroke="#c2410c" stroke-width="3"/>
   <text x="52" y="64" font-size="10" fill="#555">7.4V raw (igniter firing)</text>
   <line x1="200" y1="60" x2="224" y2="60" stroke="#0f6e56" stroke-width="2.5"/>
-  <text x="228" y="64" font-size="10" fill="#555">5V boosted logic</text>
+  <text x="228" y="64" font-size="10" fill="#555">5V buck logic</text>
   <line x1="340" y1="60" x2="364" y2="60" stroke="#444" stroke-width="2"/>
   <text x="368" y="64" font-size="10" fill="#555">GND</text>
   <line x1="420" y1="60" x2="444" y2="60" stroke="#534ab7" stroke-width="1.5"/>
@@ -80,13 +80,13 @@
   <text x="16" y="284" font-size="10" fill="#888">B — LOGIC POWER</text>
   <line x1="16" y1="288" x2="844" y2="288" stroke="#eee"/>
 
-  <!-- MT3608 -->
+  <!-- MP1584EN -->
   <rect x="16" y="298" width="150" height="64" rx="4" fill="#fafafa" stroke="#999"/>
-  <text x="91" y="318" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">U1  MT3608 Boost</text>
+  <text x="91" y="318" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">U1  MP1584EN Buck</text>
   <text x="91" y="333" text-anchor="middle" font-size="9" fill="#666">7.4V → 5.0V</text>
   <text x="91" y="346" text-anchor="middle" font-size="9" fill="#b45309">adjust pot to 5.0V first</text>
   <text x="91" y="358" text-anchor="middle" font-size="8" fill="#888">before connecting ESP32</text>
-  <!-- 7.4V in to boost -->
+  <!-- 7.4V in to buck -->
   <line x1="430" y1="124" x2="430" y2="318" stroke="#c2410c" stroke-width="2"/>
   <line x1="430" y1="318" x2="166" y2="318" stroke="#c2410c" stroke-width="2"/>
   <!-- gnd -->
@@ -202,6 +202,6 @@
 
   <!-- Notes box -->
   <rect x="16" y="668" width="828" height="44" rx="4" fill="#fcfcfc" stroke="#ddd"/>
-  <text x="26" y="684" font-size="9" fill="#666">Notes: 7.4V raw cell voltage fires Estes igniters directly (0.5–1A typical). MT3608 must be pre-set to 5.0V before connecting ESP32. Relay module is off-board on enclosure floor,</text>
+  <text x="26" y="684" font-size="9" fill="#666">Notes: 7.4V raw cell voltage fires Estes igniters directly (0.5–1A typical). MP1584EN must be pre-set to 5.0V before connecting ESP32. Relay module is off-board on enclosure floor,</text>
   <text x="26" y="698" font-size="9" fill="#666">linked by 6-wire ribbon. JD-VCC jumper removed; H/L trigger jumper set to match firmware GPIO polarity. TVS cathode (stripe) faces the positive binding post on every channel.</text>
 </svg>

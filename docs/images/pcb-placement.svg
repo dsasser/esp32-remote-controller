@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="680" height="430" viewBox="0 0 680 430" font-family="sans-serif" role="img">
 <title>ElectroCookie PCB placement on breadboard nodes</title>
-<desc>Component placement on the ElectroCookie solderable breadboard: power-rail buses on the long edges, 5-hole node columns split by a center gap, with the MT3608 and ESP32-S3 straddling the gap and the 4-channel TVS/output section at the right.</desc>
+<desc>Component placement on the ElectroCookie solderable breadboard: power-rail buses on the long edges, 5-hole node columns split by a center gap, with the MP1584EN and ESP32-S3 straddling the gap and the 4-channel TVS/output section at the right.</desc>
 <rect x="0" y="0" width="680" height="430" fill="#ffffff"/>
 <text x="340" y="22" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1a1a">PCB placement — following the breadboard nodes</text>
 <text x="340" y="38" text-anchor="middle" font-size="10" fill="#888">Each vertical 5-hole group = one trace (node). ICs straddle the center gap; the edge rails carry +5V and GND.</text>
@@ -351,7 +351,7 @@
 <line x1="206" y1="87" x2="206" y2="48" stroke="#c2410c" stroke-width="0.8"/>
 <text x="206" y="44" text-anchor="middle" font-size="8.5" fill="#c2410c">1 node = 5 tied holes</text>
 <rect x="102" y="98" width="75" height="88" rx="5" fill="#b07d3a" fill-opacity="0.12" stroke="#b07d3a" stroke-width="1.4"/>
-<text x="139.5" y="94" text-anchor="middle" font-size="9.5" font-weight="600" fill="#b07d3a">MT3608</text>
+<text x="139.5" y="94" text-anchor="middle" font-size="9.5" font-weight="600" fill="#b07d3a">MP1584EN</text>
 <text x="139.5" y="197" text-anchor="middle" font-size="8" fill="#b07d3a">set 5.0V first</text>
 <rect x="197" y="98" width="189" height="88" rx="5" fill="#3f6fb0" fill-opacity="0.12" stroke="#3f6fb0" stroke-width="1.4"/>
 <text x="291.5" y="94" text-anchor="middle" font-size="9.5" font-weight="600" fill="#3f6fb0">ESP32-S3 Super Mini</text>
@@ -399,7 +399,7 @@
 <text x="398" y="124" text-anchor="start" font-size="7.5" fill="#534ab7">GPIO4-7 → 6-wire ribbon</text>
 <text x="40" y="256" font-size="13" font-weight="600" fill="#1a1a1a">Placement, step by step</text>
 <text x="40" y="278" font-size="9" font-weight="400" fill="#0f6e56">Rails (long edges): top = +5V, bottom = GND. Jumper each part's 5V/GND pin straight to the nearest rail.</text>
-<text x="40" y="299" font-size="9" font-weight="400" fill="#b07d3a">MT3608 (left): straddles the gap, each pad on its own node. IN+ from the 7.4V terminal; OUT+ jumpered to the +5V rail. Trim to 5.0V first.</text>
+<text x="40" y="299" font-size="9" font-weight="400" fill="#b07d3a">MP1584EN (left): small step-down module, each pad on its own node. IN+ from the 7.4V terminal; OUT+ jumpered to the +5V rail. Trim to 5.0V first.</text>
 <text x="40" y="320" font-size="9" font-weight="400" fill="#3f6fb0">ESP32-S3 (center): on two 8-pin female header strips across the gap — every pin gets its own node + 4 free holes for jumpers.</text>
 <text x="40" y="341" font-size="9" font-weight="400" fill="#534ab7">Signal: GPIO4-7 jumper to the relay-signal terminal (6-wire ribbon); GPIO2 → R1 → status-LED lead.</text>
 <text x="40" y="362" font-size="9" font-weight="400" fill="#3f8f78">Outputs (right): per channel, relay NO lands on a node; a TVS bridges that node to the GND rail (cathode to +); a terminal taps it out to the post.</text>

@@ -16,7 +16,7 @@ A portable, wireless 4-channel remote igniter controller for **hobby rocketry**.
 - 7.4V raw cell voltage fires Estes igniters directly (0.5-1A typical)
 - BLE 5.0 control via phone (WiFi / ESP-NOW options in firmware)
 - Single 2S pack: 2x Samsung 30Q 18650 + 2S BMS
-- One MT3608 boost (7.4V -> 5V) for ESP32 and relay logic
+- One MP1584EN buck (7.4V -> 5V) for ESP32 and relay logic
 - VNFOCKQSH optocoupler-isolated relay, mounted off-board
 - TVS diode protection per channel; inline 5A fuse on the 7.4V rail
 - Master power switch (SW1) cuts battery+ to the whole device
@@ -46,7 +46,7 @@ remote-controller/
 │   ├── 01-overview.md         Architecture, design decisions, specs
 │   ├── 02-bom.md              Full bill of materials
 │   ├── 03-schematic.md        Schematic + wiring (see images/schematic.svg)
-│   ├── 04-pcb-layout.md       ElectroCookie three-zone layout
+│   ├── 04-pcb-layout.md       ElectroCookie breadboard-node placement
 │   ├── 05-enclosure.md        Hammond enclosure + panel compatibility
 │   ├── 06-firmware.md         BLE firmware, flashing, testing
 │   ├── 07-assembly.md         Stage-by-stage build
@@ -75,7 +75,7 @@ remote-controller/
 ```
 [2S Pack 7.4V] -> [BMS] -> [SW1] -+-> [5A fuse] -> relay COM x4 -> NO -> [TVS] -> posts -> igniters
                                   |
-                                  +-> [MT3608 5V] -> ESP32-S3 + relay logic
+                                  +-> [MP1584EN 5V] -> ESP32-S3 + relay logic
                                                 |
                                           BLE <- phone
 ```

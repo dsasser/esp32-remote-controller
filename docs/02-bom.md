@@ -10,7 +10,7 @@
 |-----|-----------|------|----------|------------|-----|
 | U2 | ESP32-S3 Super Mini | BLE 5.0, WiFi, USB-C, compact | Amazon — "ESP32-S3 Super Mini" | ~$8 | 1 |
 | K1 | VNFOCKQSH 4-channel relay module | 5V, optocoupler isolated, H/L trigger jumper, 10A contacts | Amazon — "VNFOCKQSH 4 channel relay 5V" | ~$8 | 1 |
-| U1 | MT3608 boost converter | Adjustable, 7.4V → 5.0V, 2A | Amazon — "MT3608 boost converter" | ~$8 (multi-pack) | 1 |
+| U1 | MP1584EN buck converter | Adjustable **step-down**, 7.4V → 5.0V, 3A | Amazon — "MP1584EN buck converter" | ~$8 (multi-pack) | 1 |
 | J2 | Panel-mount USB-C pigtail | Female USB-C, **M11×1.0 threaded + hex nut** (∅13.8mm flange, **∅11mm round panel hole**, ~14.5mm thread clamps any panel thickness), 4-wire pigtail to ESP USB | Amazon — "M11 threaded panel mount USB-C" | ~$6 | 1 |
 
 ---
@@ -41,7 +41,7 @@
 | F1 | Inline blade fuse holder | 5A blade fuse, **inline holder with wire pigtails** (ATC/ATO) | Amazon — "inline blade fuse holder 12AWG" | ~$8 | 1 |
 | D2–D5 | TVS diodes | P6KE15A, 600W 15V unidirectional, DO-15 axial | Amazon — "P6KE15A TVS diode" | ~$8 (20-pack) | 4 |
 
-> **Master switch (SW1):** A ∅12mm illuminated rocker on the rear panel cuts battery+ between the BMS and the fuse, so the whole device — ESP32, boost, and the firing rail — powers down with one switch. The charger feeds the BMS upstream of SW1, so the pack still charges when off. Its lamp leads are separate (4-wire); note an illuminated rocker rated for 12V will glow dim or not at all on the 7.4V rail — see [03-schematic.md](03-schematic.md).
+> **Master switch (SW1):** A ∅12mm illuminated rocker on the rear panel cuts battery+ between the BMS and the fuse, so the whole device — ESP32, buck, and the firing rail — powers down with one switch. The charger feeds the BMS upstream of SW1, so the pack still charges when off. Its lamp leads are separate (4-wire); note an illuminated rocker rated for 12V will glow dim or not at all on the 7.4V rail — see [03-schematic.md](03-schematic.md).
 
 > **Fuse:** A 5A blade fuse protects the 7.4V rail. It lives on an **inline holder wired into the battery+ lead inside the enclosure** — the holder the project actually uses is an inline pigtail type and cannot be panel-mounted, so the rear panel no longer carries a fuse cutout. To swap the fuse, open the enclosure (or pop the rear panel). If panel-accessible fuse swaps are desired later, switch to a true round-bezel panel-mount holder and add a ∅12mm hole to the rear DXF.
 
@@ -89,7 +89,7 @@
 
 | Category | Est. Cost |
 |----------|-----------|
-| Core modules (ESP32-S3, relay, MT3608, USB-C pigtail) | ~$30 |
+| Core modules (ESP32-S3, relay, MP1584EN, USB-C pigtail) | ~$30 |
 | Battery & power (cells, BMS, charger, jack, holder) | ~$46 |
 | Switching & protection (switch, fuse, TVS) | ~$24 |
 | Output connectors | ~$10 |
@@ -106,8 +106,8 @@
 This BOM reflects the **single 2S battery** architecture. Removed from earlier designs:
 
 - ~~12.8V LiFePO4 battery~~ -> replaced by 2S 18650 pack
-- ~~Separate 18650 + TP4056 logic supply~~ -> one pack now feeds both via MT3608
+- ~~Separate 18650 + TP4056 logic supply~~ -> one pack now feeds both via MP1584EN
 - ~~LiFePO4 14.6V charger~~ -> replaced by 8.4V 2S charger
-- ~~Second MT3608 / buck converter~~ -> single MT3608 boost
+- ~~Second converter / dual-rail logic supply~~ -> single MP1584EN **buck** (7.4V → 5.0V step-down)
 
 The result is lighter, simpler, cheaper, and fully sufficient for hobby igniter loads.

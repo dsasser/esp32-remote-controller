@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1020" height="760" viewBox="0 0 1020 760" font-family="sans-serif" role="img">
 <title>4-Channel Remote Ignitor — component-level schematic</title>
-<desc>Engineering schematic: 2S battery and BMS, MT3608 5V boost, ESP32-S3, optocoupler-isolated 4-channel relay, per-channel TVS protection and binding-post outputs.</desc>
+<desc>Engineering schematic: 2S battery and BMS, MP1584EN 5V buck, ESP32-S3, optocoupler-isolated 4-channel relay, per-channel TVS protection and binding-post outputs.</desc>
 <rect x="0" y="0" width="1020" height="760" fill="#ffffff"/>
 <rect x="10" y="10" width="1000" height="740" fill="none" stroke="#bbb"/>
 <text x="510.0" y="34" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600" font-style="normal">4-Channel Remote Ignitor Controller — Component Schematic (Rev 3, 2S)</text>
@@ -69,8 +69,8 @@
 <line x1="282" y1="178" x2="980" y2="178" stroke="#0f6e56" stroke-width="2.5"/>
 <text x="700" y="172" font-size="10" fill="#0f6e56" text-anchor="start" font-weight="600" font-style="normal">+5V logic bus</text>
 <rect x="300" y="210" width="120" height="86" rx="4" fill="#fafafa" stroke="#999"/>
-<text x="360" y="230" font-size="11" fill="#1a1a1a" text-anchor="middle" font-weight="600" font-style="normal">U1 MT3608</text>
-<text x="360" y="244" font-size="9" fill="#666" text-anchor="middle" font-weight="400" font-style="normal">boost 7.4->5.0V</text>
+<text x="360" y="230" font-size="11" fill="#1a1a1a" text-anchor="middle" font-weight="600" font-style="normal">U1 MP1584EN</text>
+<text x="360" y="244" font-size="9" fill="#666" text-anchor="middle" font-weight="400" font-style="normal">buck 7.4->5.0V</text>
 <text x="360" y="262" font-size="9" fill="#b45309" text-anchor="middle" font-weight="600" font-style="normal">TRIM TO</text>
 <text x="360" y="274" font-size="9" fill="#b45309" text-anchor="middle" font-weight="600" font-style="normal">5.00V FIRST</text>
 <text x="306" y="224" font-size="8" fill="#666" text-anchor="start" font-weight="400" font-style="normal">IN+</text>
@@ -332,7 +332,7 @@
 <text x="728" y="744" font-size="8" fill="#666" text-anchor="start" font-weight="400" font-style="normal">GPIO4-7->IN1-4 . GPIO2->LED . active-LOW</text>
 <rect x="18" y="690" width="690" height="58" fill="#fcfcfc" stroke="#ddd"/>
 <text x="26" y="706" font-size="9" fill="#555" text-anchor="start" font-weight="600" font-style="normal">Notes:</text>
-<text x="26" y="720" font-size="8" fill="#666" text-anchor="start" font-weight="400" font-style="normal">1. Pre-set MT3608 to 5.00V before connecting ESP32/relay.   2. F1 fuses only the firing path (relay COM); the boost taps raw +7V4.</text>
+<text x="26" y="720" font-size="8" fill="#666" text-anchor="start" font-weight="400" font-style="normal">1. Pre-set MP1584EN to 5.00V before connecting ESP32/relay.   2. F1 fuses only the firing path (relay COM); the buck taps raw +7V4.</text>
 <text x="26" y="732" font-size="8" fill="#666" text-anchor="start" font-weight="400" font-style="normal">3. TVS D2-D5 cathode (stripe) faces the + binding post on every channel.   4. Relay H/L jumper set to match firmware (active-LOW).</text>
 <text x="26" y="744" font-size="8" fill="#666" text-anchor="start" font-weight="400" font-style="normal">5. C1 100uF bulk on +5V at ESP32; C2-C5 0.1uF on relay IN1-IN4.   6. GND common; 18AWG firing, 22AWG logic.   NO1-4 joined by net name.</text>
 </svg>

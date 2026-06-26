@@ -1,6 +1,6 @@
 # 04 — PCB Layout
 
-The build uses a **black ElectroCookie solderable breadboard**. The medium (~80×60mm, 30-column) board is enough — the layout below uses only ~22 of its 30 columns — but a larger ElectroCookie also fits the enclosure if you want more elbow room. The relay module mounts **off-board** on the enclosure floor, so the PCB only carries the ESP32, boost, decoupling, the TVS/output section, and the screw terminals.
+The build uses a **black ElectroCookie solderable breadboard**. The medium (~80×60mm, 30-column) board is enough — the layout below uses only ~22 of its 30 columns — but a larger ElectroCookie also fits the enclosure if you want more elbow room. The relay module mounts **off-board** on the enclosure floor, so the PCB only carries the ESP32, buck, decoupling, the TVS/output section, and the screw terminals.
 
 ![PCB placement on the breadboard nodes](images/pcb-placement.svg)
 
@@ -13,7 +13,7 @@ The ElectroCookie is a 1:1 breadboard replica, so component placement follows br
 - **Node strips:** the main field is two banks split by a **center gap**. Each vertical group of **5 holes is one electrical node** (one trace). Adjacent groups are isolated.
 - **Power rails:** continuous bus strips run along the two **long edges**. Dedicate one rail to **+5V** and the other to **GND**. (If your board has a second rail per side, give the spare to **+7.4V** and skip the jumper below.)
 
-The consequence: parts with two rows of pins (the ESP32-S3, and most MT3608 modules) **straddle the center gap**, so each pin lands on its own 5-hole node with four free holes for jumpers — exactly like seating a DIP on a breadboard.
+The consequence: a part with two rows of pins (notably the ESP32-S3) **straddles the center gap**, so each pin lands on its own 5-hole node with four free holes for jumpers — exactly like seating a DIP on a breadboard. Small single-row modules (the MP1584EN) just sit in one bank, each pad on its own node.
 
 ---
 
@@ -22,9 +22,9 @@ The consequence: parts with two rows of pins (the ESP32-S3, and most MT3608 modu
 ### Power rails (long edges)
 - Top edge → **+5V** bus. Bottom edge → **GND** bus.
 - Jumper each part's 5V and GND pins straight to the nearest rail.
-- **7.4V** has no dedicated rail on a 2-rail board: bring it in on a screw terminal and jumper it to the MT3608 input and the relay-COM feed. (Or use a 3rd/4th rail if your board has one.)
+- **7.4V** has no dedicated rail on a 2-rail board: bring it in on a screw terminal and jumper it to the MP1584EN input and the relay-COM feed. (Or use a 3rd/4th rail if your board has one.)
 
-### MT3608 boost — input end, straddling the gap
+### MP1584EN buck — input end
 - Each pad on its own node. **IN+** from the 7.4V terminal, **IN−/OUT−** to the GND rail, **OUT+** jumpered to the +5V rail.
 - **Mount and trim to 5.00V before anything else is connected.** The pot is sensitive.
 

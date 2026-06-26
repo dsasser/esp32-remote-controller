@@ -150,4 +150,4 @@ See the `firmware/esp_now_controller/` directory (planned — contributions welc
 | All relays fire on boot | Relay active-HIGH logic mismatch | Set `RELAY_ACTIVE_LOW false` |
 | Upload fails | ESP32-S3 not in download mode | Hold BOOT, tap RESET, release BOOT |
 | LED stays off | Wrong LED pin or LED polarity | Check GPIO2 and LED orientation |
-| MT3608 output too high | Pot not pre-adjusted | Adjust to 5.00V before connecting |
+| MP1584EN output too high | Pot not pre-adjusted | Adjust to 5.00V before connecting |

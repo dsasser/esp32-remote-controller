@@ -14,7 +14,7 @@ Heights and lid clearance (everything sits in one layer):
 
 ![Side view — heights and clearance](images/internal-side.svg)
 
-For component placement *on the PCB itself* (breadboard nodes, rails, where the ESP32/MT3608/TVS sit), see [04-pcb-layout.md](04-pcb-layout.md).
+For component placement *on the PCB itself* (breadboard nodes, rails, where the ESP32/MP1584EN/TVS sit), see [04-pcb-layout.md](04-pcb-layout.md).
 
 ---
 
@@ -39,20 +39,20 @@ For component placement *on the PCB itself* (breadboard nodes, rails, where the 
 
 ---
 
-## Stage 3 — MT3608 to 5.0V
+## Stage 3 — MP1584EN to 5.0V
 
-1. Wire BMS output (7.4V) to MT3608 IN+ / IN-
-2. Power the MT3608, measure OUT+ / OUT-
+1. Wire BMS output (7.4V) to MP1584EN IN+ / IN-
+2. Power the MP1584EN, measure OUT+ / OUT-
 3. **Adjust the trimmer pot until output reads 5.00V ± 0.05V.** Turn slowly.
 
-**Test:** Stable 5.00V at MT3608 output. Nothing downstream connected yet.
+**Test:** Stable 5.00V at MP1584EN output. Nothing downstream connected yet.
 
 ---
 
 ## Stage 4 — ESP32-S3 First Boot
 
 1. Solder two 8-pin female header rows straddling the ElectroCookie center gap; plug in the ESP32-S3
-2. Wire MT3608 5V -> +5V edge rail, GND -> GND edge rail
+2. Wire MP1584EN 5V -> +5V edge rail, GND -> GND edge rail
 3. Flash a blink sketch over USB-C to confirm the toolchain
 4. Flash the main firmware from `/firmware/remote_controller/`
 5. Confirm `RemoteBox` appears in a BLE scan (nRF Connect)
@@ -116,7 +116,7 @@ For each channel:
 
 - [ ] 5A fuse installed; SW1 cuts COM power when off
 - [ ] JD-VCC jumper removed; H/L trigger matches firmware
-- [ ] MT3608 verified at 5.00V
+- [ ] MP1584EN verified at 5.00V
 - [ ] TVS cathode to + post on every channel
 - [ ] Relays confirmed open (safe) at power-up
 - [ ] All terminals tug-tested
